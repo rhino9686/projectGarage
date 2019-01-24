@@ -32,6 +32,7 @@ void printOptions() {
 
 void addCar();
 void raceCars();
+void clearCars();
 
 
 int main(int argc, const char * argv[]) {
@@ -66,6 +67,11 @@ int main(int argc, const char * argv[]) {
                     ended = true;
                 }
                 break;
+            case 'c': // code to be executed if input suggests a clear;
+                if (input == "clear") {
+                    clearCars();
+                }
+                break;
             case 'r': // code to be executed if user wants to race;
                 if (input == "race") {
                     raceCars();
@@ -85,8 +91,60 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void addCar() {
+void addCar(Garage &gar) {
+    //Initializing constructor fields for later use
+    char selectedType = 'e';
+    carType type;
+    int mpg;
+    double speed;
+    int year;
+    string make;
+    string model;
+    
     cout << "adding a new car!\n";
+    if (0) {
+        return;
+    }
+    
+    cout << "What type of car?\n";
+    cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover:";
+    cin >> selectedType;
+    switch (selectedType) {
+        case 'A':
+            type = carType::SUV;
+            break;
+        case 'B':
+            type = carType::SEDAN;
+            break;
+        case 'C':
+            type = carType::TRUCK;
+            break;
+        case 'D':
+            type = carType::CROSSOVER;
+            break;
+        default:
+            type = carType::OTHER;
+            break;
+    }
+    
+    cout <<"What year, make, and model is your car? Enter year, then make, then model, with spaces in between";
+    cin >> year >>  make >> model;
+    cout << "What is the max speed?";
+    cin >> speed;
+    cout << "What is the average MPG?";
+    cin >> mpg;
+    cout << "Thanks! adding your car";
+    
+    //Construct car with these parameters
+    Car entry = Car(make, model, type, year, speed);
+    //Add car to garage
+    gar.addCar(entry);
+    
+    return;
+}
+
+void clearCars() {
+    cout << "clearing out all cars!\n";
     
     return;
 }

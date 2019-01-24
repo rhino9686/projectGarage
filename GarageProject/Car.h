@@ -24,6 +24,8 @@ enum class carType {
     SEDAN,
     TRUCK,
     SUV,
+    CROSSOVER,
+    OTHER
 };
 
 
@@ -37,17 +39,18 @@ private:
     int uniqID;
     int mpg;
     static int idCounter;
+    carType type;
     
 public:
     Car() {
-        make = "";
-        model = "";
+        make = "PLACEHOLDER_MAKE";
+        model = "PLACEHOLDER_MODEL";
         year = 3;
         speed = -1;;
         uniqID = -1;
-        mpg = 30;
+        mpg = 0;
     }
-    Car(string makeIn, string modelIn, int yearIn, double speedIn) {
+    Car(string makeIn, string modelIn, carType typeIn, int yearIn, double speedIn) {
         make = makeIn;
         model = modelIn;
         year = yearIn;
@@ -65,7 +68,8 @@ public:
     string getMake();
     string getModel();
     int getYear();
-    int getSpeed();
+    double getSpeed();
+    int getMPG();
 };
 
 //Initialize static counter here
@@ -112,6 +116,19 @@ public:
             }
         }
         return *fastest;
+    }
+    
+    Car getMostEfficientCar() {
+        Car temp = Car();
+        Car* cleanest = &temp;
+        
+        for (Car car: cars) {
+            
+            if ( car.getMPG() > cleanest->getMPG() ) {
+                cleanest = &car;
+            }
+        }
+        return *cleanest;
     }
     
 };
