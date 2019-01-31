@@ -12,27 +12,32 @@
 
 
 #include <iostream>
+#include <queue>
 #include "Car.h"
+
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+using std::priority_queue;
 
 void printOptions() {
-    
-    cout <<"You can: \n  Add a new car to your garage!\n";
+    cout <<"You can: \n  Add a new car to your garage with 'add'!\n";
     cout <<"  List all your current cars with 'list!\n";
     cout <<"  Clear your garage with 'clear' !\n";
+    cout <<"  Request for information about your cars with 'data'";
     cout <<"  Or make your cars race with 'race'!\n";
-     cout <<"  Exit the application with 'quit'!\n";
+    cout <<"  Exit the application with 'quit'!\n";
+    cout <<"  Type 'v' to toggle verbosity on or off!\n";
     cout <<"  Type 'help' at any time to repeat this message\n";
-    
-    return;
+
 }
 
-void addCar();
-void raceCars();
-void clearCars();
+void addCar(Garage &gar, bool v);
+void raceCars(Garage &gar, bool v);
+void clearCars(Garage &gar, bool v);
+void listCars(Garage &gar, bool v);
+void getData(Garage &gar, bool v);
 
 
 int main(int argc, const char * argv[]) {
@@ -41,6 +46,8 @@ int main(int argc, const char * argv[]) {
     
     string input;
     bool ended;
+    bool verbose = true;
+    bool& v = verbose;
     Garage garage = Garage();
     
     
@@ -59,6 +66,11 @@ int main(int argc, const char * argv[]) {
         
         switch (inputFirstLetter)
         {
+            case 'a': // code to be executed if input suggests an add;
+                if (input == "add") {
+                    addCar(garage,v);
+                }
+                break;
             case 'h': // code to be executed if input suggests a help;
                  printOptions();
                 break;
@@ -69,12 +81,12 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'c': // code to be executed if input suggests a clear;
                 if (input == "clear") {
-                    clearCars();
+                    clearCars(garage, v);
                 }
                 break;
             case 'r': // code to be executed if user wants to race;
                 if (input == "race") {
-                    raceCars();
+                    raceCars(garage, v);
                 }
                 break;
             default: // code to be executed if n doesn't match any cases
@@ -91,7 +103,7 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void addCar(Garage &gar) {
+void addCar(Garage &gar, bool v) {
     //Initializing constructor fields for later use
     char selectedType = 'e';
     carType type;
@@ -143,7 +155,7 @@ void addCar(Garage &gar) {
     return;
 }
 
-void clearCars() {
+void clearCars(Garage &gar, bool v) {
     cout << "clearing out all cars!\n";
     
     return;
@@ -152,4 +164,8 @@ void clearCars() {
 void raceCars() {
     cout<< "racing cars!";
     return;
+}
+
+void listCars(Garage &gar, bool v) {
+    
 }
