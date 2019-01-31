@@ -8,9 +8,11 @@
 
 #include <stdio.h>
 #include <vector>
+#include <iostream>
 #include <string>
 #include <cassert>
 #include "Car.h"
+
 
 using namespace std;
 
@@ -25,7 +27,6 @@ class CarTester {
     int year;
     double speed;
     int mpg;
-    
     carType type;
     
 public:

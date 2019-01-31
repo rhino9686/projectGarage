@@ -16,6 +16,8 @@
 #include <iostream>
 #include <vector>
 
+#define INVALID_ID -23
+
 using std::string;
 using std::vector;
 
@@ -45,9 +47,9 @@ public:
     Car() {
         make = "PLACEHOLDER_MAKE";
         model = "PLACEHOLDER_MODEL";
-        year = 3;
-        speed = -1;;
-        uniqID = -1;
+        year = 2000;
+        speed = 27;;
+        uniqID = INVALID_ID;
         mpg = 0;
     }
     Car(string makeIn, string modelIn, carType typeIn, int yearIn, double speedIn) {
@@ -72,6 +74,12 @@ public:
     double getSpeed() { return speed; }
     int getMPG() { return mpg; }
     carType getType() { return type; }
+    int getID() { return uniqID; }
+    
+    std::ostream& operator<<(std::ostream& os ) {
+        os << " A valid car\n";
+        return os;
+    }
     
     
 };

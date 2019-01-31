@@ -114,13 +114,9 @@ void addCar(Garage &gar, bool v) {
     string make;
     string model;
     
-    cout << "adding a new car!\n";
-    if (0) {
-        return;
-    }
     
     cout << "What type of car?\n";
-    cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover:\n";
+    cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover: \n E. Other: \n";
     cin >> selectedType;
     switch (selectedType) {
         case 'A':
@@ -150,6 +146,11 @@ void addCar(Garage &gar, bool v) {
     
     //Construct car with these parameters
     Car entry = Car(make, model, type, year, speed);
+    
+    if (v) {
+        cout << "added a new car!\n";
+    }
+    
     //Add car to garage
     gar.addCar(entry);
     
