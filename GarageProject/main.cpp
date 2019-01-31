@@ -12,6 +12,7 @@
 
 
 #include <iostream>
+#include <fstream>
 #include <queue>
 #include "Car.h"
 
@@ -20,9 +21,11 @@ using std::cin;
 using std::endl;
 using std::string;
 using std::priority_queue;
+using std::ifstream;
 
 void printOptions() {
     cout <<"You can: \n  Add a new car to your garage with 'add'!\n";
+    cout <<"You can: \n  Add a bunch with 'addFile!'\n";
     cout <<"  List all your current cars with 'list!\n";
     cout <<"  Clear your garage with 'clear' !\n";
     cout <<"  Request for information about your cars with 'data'";
@@ -33,11 +36,12 @@ void printOptions() {
 
 }
 
-void addCar(Garage &gar, bool v);
-void raceCars(Garage &gar, bool v);
-void clearCars(Garage &gar, bool v);
-void listCars(Garage &gar, bool v);
-void getData(Garage &gar, bool v);
+void addCar(Garage &gar, const bool v);
+void addCarsByFile(Garage &gar, const bool v);
+void raceCars(Garage &gar, const bool v);
+void clearCars(Garage &gar, const bool v);
+void listCars(Garage &gar, const bool v);
+void getData(Garage &gar, const bool v);
 
 
 int main(int argc, const char * argv[]) {
@@ -45,18 +49,15 @@ int main(int argc, const char * argv[]) {
     //Just starting with a user prompt
     
     string input;
-    bool ended;
+    bool ended = false;
     bool verbose = true;
     bool& v = verbose;
     Garage garage = Garage();
-    
     
     cout <<"Hello!\n";
     cout <<"Welcome to your garage!\n";
     cout <<"what do you want to do first?\n";
     printOptions();
-    
-    ended = false;
     
     // quasi-infinite loop to prompt for user input
     do {
@@ -119,7 +120,7 @@ void addCar(Garage &gar, bool v) {
     }
     
     cout << "What type of car?\n";
-    cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover:";
+    cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover:\n";
     cin >> selectedType;
     switch (selectedType) {
         case 'A':
@@ -155,7 +156,24 @@ void addCar(Garage &gar, bool v) {
     return;
 }
 
-void clearCars(Garage &gar, bool v) {
+void addCarsByFile(Garage &gar, const bool v) {
+    string fileName;
+    string line;
+    cout <<"give your filename to input: \n";
+    cin >> fileName;
+    ifstream inputFile(fileName);
+    if (!inputFile.is_open()) {
+        cout << "can't open that file, try again later\n";
+    }
+    while (getline(inputFile,line) ) {
+        cout << line << '\n';
+    }
+    inputFile.close();
+    
+    return;
+}
+
+void clearCars(Garage &gar, const bool v) {
     cout << "clearing out all cars!\n";
     
     return;
@@ -166,6 +184,6 @@ void raceCars() {
     return;
 }
 
-void listCars(Garage &gar, bool v) {
+void listCars(Garage &gar, const bool v) {
     
 }

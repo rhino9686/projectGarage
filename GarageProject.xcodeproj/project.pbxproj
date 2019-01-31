@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CBC6F5F621F7D797004DA3AC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBC6F5F521F7D797004DA3AC /* main.cpp */; };
+		CBDA86FA2202B02E000EA587 /* testCars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBDA86F92202B02E000EA587 /* testCars.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		CBC6F5F221F7D797004DA3AC /* GarageProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GarageProject; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC6F5F521F7D797004DA3AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CBDA86F82202AF95000EA587 /* Help.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
+		CBDA86F92202B02E000EA587 /* testCars.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testCars.cpp; sourceTree = "<group>"; };
 		CBE6BCE921F7DA6100B35829 /* Car.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = Car.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +63,8 @@
 			children = (
 				CBC6F5F521F7D797004DA3AC /* main.cpp */,
 				CBE6BCE921F7DA6100B35829 /* Car.h */,
+				CBDA86F82202AF95000EA587 /* Help.h */,
+				CBDA86F92202B02E000EA587 /* testCars.cpp */,
 			);
 			path = GarageProject;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBDA86FA2202B02E000EA587 /* testCars.cpp in Sources */,
 				CBC6F5F621F7D797004DA3AC /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

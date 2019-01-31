@@ -65,11 +65,15 @@ public:
         uniqID++;
     }
     
-    string getMake();
-    string getModel();
-    int getYear();
-    double getSpeed();
-    int getMPG();
+    //Getters
+    string getMake() { return make; }
+    string getModel() { return model; }
+    int getYear() { return year; }
+    double getSpeed() { return speed; }
+    int getMPG() { return mpg; }
+    carType getType() { return type; }
+    
+    
 };
 
 //Initialize static counter here
