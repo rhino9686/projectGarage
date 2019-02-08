@@ -145,7 +145,7 @@ void addCar(Garage &gar, bool v) {
     cout << "Thanks! adding your car";
     
     //Construct car with these parameters
-    Car entry = Car(make, model, type, year, speed);
+    Car entry = Car(make, model, type, mpg, year, speed);
     
     if (v) {
         cout << "added a new car!\n";

@@ -15,11 +15,13 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+#include <queue>
 
 #define INVALID_ID -23
 
 using std::string;
 using std::vector;
+using std::priority_queue;
 
 //Class to distinct between vehicle form factors
 enum class carType {
@@ -52,11 +54,12 @@ public:
         uniqID = INVALID_ID;
         mpg = 0;
     }
-    Car(string makeIn, string modelIn, carType typeIn, int yearIn, double speedIn) {
+    Car(string makeIn, string modelIn, carType typeIn,int mpgIn, int yearIn, double speedIn) {
         make = makeIn;
         model = modelIn;
         year = yearIn;
         speed = speedIn;
+        mpg = mpgIn;
         uniqID = idCounter++;
     }
     Car(Car const &other) {
@@ -87,10 +90,42 @@ public:
 //Initialize static counter here
 int Car::idCounter = 1000;
 
+
+//Comparator classes for priority queues
+
+class CarSpeedLess{
+    
+public:
+    bool operator()(Car car1, Car car2){
+        if (car1.getSpeed() < car2.getSpeed()) return true;
+        
+        if (car1.getSpeed() == car2.getSpeed()){
+            if (car1.getMPG() > car2.getMPG()) return true;
+        }
+        return false;
+    }
+};
+
+class CarMPGLess{
+    
+public:
+    bool operator()(Car car1, Car car2){
+        if (car1.getMPG() < car2.getMPG()) return true;
+        
+        if (car1.getMPG() == car2.getMPG()){
+            if (car1.getYear() > car2.getYear()) return true;
+        }
+        return false;
+    }
+};
+
+
 //Class to represent a garage, the main database to hold all cars
 class Garage {
     int count;
     vector<Car> cars;
+    priority_queue<Car, vector<Car>, CarSpeedLess> fastestQueue;
+    priority_queue<Car, vector<Car>, CarMPGLess> efficientQueue;
     
 public:
     //Constructors
@@ -145,6 +180,8 @@ public:
     
 };
 
+
+
 class Racetrack {
     int numCars = 0;
     Car* winner = nullptr;
@@ -154,3 +191,4 @@ public:
         
     }
 };
+
