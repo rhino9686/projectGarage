@@ -10,17 +10,16 @@
     Welcome to Garage! An application where we hold cars and race them to see which one is the fastest.
  */
 
-
-#include <iostream>
+//#include <iostream>
 #include <fstream>
 #include <queue>
 #include "Car.h"
+//#include "ToolBox.h"
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
-using std::priority_queue;
 using std::ifstream;
 
 void printOptions() {
@@ -53,7 +52,6 @@ int main(int argc, const char * argv[]) {
     bool verbose = true;
     bool& v = verbose;
     Garage garage = Garage();
-    
     cout <<"Hello!\n";
     cout <<"Welcome to your garage!\n";
     cout <<"what do you want to do first?\n";
@@ -104,8 +102,9 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void addCar(Garage &gar, bool v) {
+void addCar(Garage &gar, const bool v) {
     //Initializing constructor fields for later use
+    
     char selectedType = 'e';
     carType type;
     int mpg;
@@ -180,11 +179,11 @@ void clearCars(Garage &gar, const bool v) {
     return;
 }
 
-void raceCars() {
+void raceCars(Garage &gar, const bool v) {
     cout<< "racing cars!";
     return;
 }
 
 void listCars(Garage &gar, const bool v) {
-    
+    return;
 }
