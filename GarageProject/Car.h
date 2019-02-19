@@ -16,6 +16,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <cstdlib>
 
 #define INVALID_ID -23
 
@@ -54,7 +55,8 @@ public:
         uniqID = INVALID_ID;
         mpg = 0;
     }
-    Car(string makeIn, string modelIn, carType typeIn,int mpgIn, int yearIn, double speedIn) {
+    Car(const string &makeIn, const string &modelIn, const carType &typeIn,
+        const int &mpgIn, const int &yearIn, const double &speedIn) {
         make = makeIn;
         model = modelIn;
         year = yearIn;
@@ -66,25 +68,34 @@ public:
         make = other.make;
         model = other.model;
         year = other.year;
-        uniqID = other.uniqID;
-        uniqID++;
+        speed = other.speed;
+        mpg = other.mpg;
+        uniqID = idCounter++;
+    }
+    Car operator=(Car const &other) {
+        make = other.make;
+        model = other.model;
+        year = other.year;
+        speed = other.speed;
+        mpg = other.mpg;
+        uniqID = idCounter++;
+        return *this;
     }
     
+    
     //Getters
-    string getMake() { return make; }
-    string getModel() { return model; }
-    int getYear() { return year; }
+    const string getMake() { return make; }
+    const string getModel() { return model; }
+    const int getYear() { return year; }
     double getSpeed() { return speed; }
-    int getMPG() { return mpg; }
-    carType getType() { return type; }
-    int getID() { return uniqID; }
+    const int getMPG() { return mpg; }
+    const carType getType() { return type; }
+    const int getID() { return uniqID; }
     
     std::ostream& operator<<(std::ostream& os ) {
         os << " A valid car\n";
         return os;
     }
-    
-    
 };
 
 //Initialize static counter here
@@ -123,9 +134,9 @@ public:
 //Class to represent a garage, the main database to hold all cars
 class Garage {
     int count;
-    vector<Car> cars;
-    priority_queue<Car, vector<Car>, CarSpeedLess> fastestQueue;
-    priority_queue<Car, vector<Car>, CarMPGLess> efficientQueue;
+    vector<Car*> cars;
+    priority_queue<Car*, vector<Car*>, CarSpeedLess> fastestQueue;
+    priority_queue<Car*, vector<Car*>, CarMPGLess> efficientQueue;
     
 public:
     //Constructors
@@ -134,7 +145,11 @@ public:
     }
     //Add a car to the garage
     void addCar(Car newCar) {
-        cars.push_back(newCar);
+        cars.push_back(&newCar);
+        /*
+        fastestQueue.push(newCar);
+        efficientQueue.push(newCar);
+         */
         count++;
     }
     //Delete all cars from garage
@@ -147,32 +162,32 @@ public:
         return count;
     }
     //Get the latest car added to garage
-    Car getLatestCar() {
-        Car latest = cars.at(count - 1);
-        return latest;
+    const Car& getLatestCar() {
+        Car* latest = cars.at(count - 1);
+        return *latest;
     }
     //Get the fastest car in the garage
-    Car getFastestCar() {
+    const Car& getFastestCar() {
         Car temp = Car();
         Car* fastest = &temp;
         
-        for (Car car: cars) {
+        for (Car* car: cars) {
             
-            if ( car.getSpeed() > fastest->getSpeed() ) {
-                fastest = &car;
+            if ( car->getSpeed() > fastest->getSpeed() ) {
+                fastest = car;
             }
         }
         return *fastest;
     }
     
-    Car getMostEfficientCar() {
+    const Car& getMostEfficientCar() {
         Car temp = Car();
         Car* cleanest = &temp;
         
-        for (Car car: cars) {
+        for (Car* car: cars) {
             
-            if ( car.getMPG() > cleanest->getMPG() ) {
-                cleanest = &car;
+            if ( car->getMPG() > cleanest->getMPG() ) {
+                cleanest = car;
             }
         }
         return *cleanest;

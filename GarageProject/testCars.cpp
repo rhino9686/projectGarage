@@ -36,7 +36,7 @@ public:
     
     void carTestValidParams1();
     void carTestValidParams2();
-    void carTest3();
+    void carTestuniqID();
     void carTest4();
     void carTest5();
     
@@ -47,6 +47,7 @@ int main() {
     CarTester carTests = CarTester();
     carTests.carTestValidParams1();
     carTests.carTestValidParams2();
+    carTests.carTestuniqID();
     
     return 0;
 }
@@ -85,5 +86,38 @@ void CarTester::carTestValidParams2() {
     assert(myCar.getSpeed() == speed);
     assert(myCar.getYear() == year);
     printf("Car with valid params, Test 2: all fine!\n" );
+}
+
+
+void CarTester::carTestuniqID() {
+    
+    make = "Chevrolet";
+    model = "Camaro";
+    type = carType::SEDAN;
+    year = 2014;
+    speed = 27;
+    mpg = 25;
+    
+    Car uniqCar1 = Car(make, model, type, mpg, year, speed);
+    Car uniqCar2 = Car(make, model, type, mpg, year, speed);
+    Car uniqCar3 = Car(make, model, type, mpg, year, speed);
+    Car copiedCar1 = uniqCar1;
+    Car copiedCar2(uniqCar2);
+    Car copiedCar3 = Car(uniqCar3);
+    
+    Cars.push_back(uniqCar1);
+    Cars.push_back(uniqCar2);
+    Cars.push_back(uniqCar3);
+    Cars.push_back(copiedCar1);
+    Cars.push_back(copiedCar2);
+    Cars.push_back(copiedCar3);
+    
+  /*  for (Car car: Cars) {
+        printf("%d \n",car.getID());
+    }*/
+    
+    assert(copiedCar3.getID() - uniqCar1.getID() == 5);
+    printf("Car uniq IDs are incremementing properly,all fine!\n" );
+    printf("NOTE: copy constructor causing unused uniq IDs.\n" );
 }
 
