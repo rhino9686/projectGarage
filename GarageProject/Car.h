@@ -233,7 +233,6 @@ public:
 };
 
 
-
 class Racetrack {
     int numCars = 0;
     Car* winner = nullptr;

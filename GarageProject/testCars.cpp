@@ -18,7 +18,7 @@ using namespace std;
 
 class CarTester {
     
-    vector<Car> Cars;
+    vector<Car*> Cars;
     Car primaryCar;
     
     //paramaters
@@ -38,7 +38,7 @@ public:
     void carTestValidParams2();
     void carTestuniqID();
     void carTestPrintCar();
-    void carTest5();
+    void carTestInvalidParams1();
     
 };
 
@@ -99,27 +99,26 @@ void CarTester::carTestuniqID() {
     speed = 27;
     mpg = 25;
     
-    Car uniqCar1 = Car(make, model, type, mpg, year, speed);
-    Car uniqCar2 = Car(make, model, type, mpg, year, speed);
-    Car uniqCar3 = Car(make, model, type, mpg, year, speed);
-    Car copiedCar1 = uniqCar1;
-    Car copiedCar2(uniqCar2);
-    Car copiedCar3 = Car(uniqCar3);
+    Car* uniqCar1 = new Car(make, model, type, mpg, year, speed);
+    Car* uniqCar2 = new Car(make, model, type, mpg, year, speed);
+    Car* uniqCar3 = new Car(make, model, type, mpg, year, speed);
+    Car copiedCar1 = *uniqCar1;
+    Car* copiedCar2 = new Car(*uniqCar2);
+    Car* copiedCar3 = new Car(*uniqCar3);
     
     Cars.push_back(uniqCar1);
     Cars.push_back(uniqCar2);
     Cars.push_back(uniqCar3);
-    Cars.push_back(copiedCar1);
+    Cars.push_back(&copiedCar1);
     Cars.push_back(copiedCar2);
     Cars.push_back(copiedCar3);
     
-  /*  for (Car car: Cars) {
-        printf("%d \n",car.getID());
-    }*/
+    for (Car* car: Cars) {
+        printf("%d \n",car->getID());
+    }
     
-    assert(copiedCar3.getID() - uniqCar1.getID() == 5);
+    assert(copiedCar3->getID() - uniqCar1->getID() == 5);
     printf("Car uniq IDs are incremementing properly.\n" );
-    printf("NOTE: copy constructor causing unused uniqIDs. Find workaround \n" );
 }
 
 void CarTester::carTestPrintCar() {
@@ -133,7 +132,10 @@ void CarTester::carTestPrintCar() {
     
     Car myCar = Car(make, model, type, mpg, year, speed);
     
-    cout << myCar << endl;
-    
+    ostringstream os;
+    os << myCar;
+    string testStr = os.str();
+    assert(testStr == "2010 Honda Civic with 32 MPG\n");
+    printf("Cars are printing properly.\n" );
 }
 

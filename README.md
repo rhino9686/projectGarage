@@ -1,25 +1,37 @@
 # Project Garage
 
-Project Garage is a C++ application .
+Project Garage is a pseudo-database for storing automobile models, running statistical analyses on them, and simulating a race. The main edition will be written in C++, with possible versions written in Python and/or Java.
+The current edition only runs as a command-line application, with no GUI or persistent data.
 
 ## Installation
+Just download the files, will make a Tar.gz later for easy downloading
 
-Just download the files, will make a Tar.gz later for installation
+
+## Building
+There will be a makefile with build commands later.
+We will start with `make tests` and `make db`, as our first simple commands
+
+
+## Testing
+For now we just have a bare-bones unit test framework using assert statements and printing.
+
+
 
 ## Usage
 
-```cpp
-import foobar
+On startup, you will just run a .exe from the command line, and will be shown a startup message.
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+### Commands 
+
+```Coming soon!
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+
+
+## Contributing
+Right now we are still working on the first working version, and working out the potential bugs and kinks in the UI.
+After the first version is completed, we will open up for contributors.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
