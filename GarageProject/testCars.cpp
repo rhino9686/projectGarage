@@ -37,7 +37,7 @@ public:
     void carTestValidParams1();
     void carTestValidParams2();
     void carTestuniqID();
-    void carTest4();
+    void carTestPrintCar();
     void carTest5();
     
 };
@@ -48,6 +48,7 @@ int main() {
     carTests.carTestValidParams1();
     carTests.carTestValidParams2();
     carTests.carTestuniqID();
+    carTests.carTestPrintCar();
     
     return 0;
 }
@@ -117,7 +118,22 @@ void CarTester::carTestuniqID() {
     }*/
     
     assert(copiedCar3.getID() - uniqCar1.getID() == 5);
-    printf("Car uniq IDs are incremementing properly,all fine!\n" );
-    printf("NOTE: copy constructor causing unused uniq IDs.\n" );
+    printf("Car uniq IDs are incremementing properly.\n" );
+    printf("NOTE: copy constructor causing unused uniqIDs. Find workaround \n" );
+}
+
+void CarTester::carTestPrintCar() {
+    
+    make = "Honda";
+    model = "Civic";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 23;
+    mpg = 32;
+    
+    Car myCar = Car(make, model, type, mpg, year, speed);
+    
+    cout << myCar << endl;
+    
 }
 

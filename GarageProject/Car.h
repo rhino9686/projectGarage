@@ -37,6 +37,7 @@ enum class carType {
 //Class to represent a car and perform operations like racing
 class Car {
 private:
+    //Initial member variables, may expand later to get better simulation for racing
     string make;
     string model;
     int year;
@@ -47,38 +48,47 @@ private:
     carType type;
     
 public:
+    //Default constructor, may revise with better default values
     Car() {
         make = "PLACEHOLDER_MAKE";
         model = "PLACEHOLDER_MODEL";
         year = 2000;
         speed = 27;;
-        uniqID = INVALID_ID;
         mpg = 0;
+        uniqID = INVALID_ID;
     }
+    /*Constructor from input fields, user entered. TODO: make sure input upholds variant, but error. Sanitize at user input level to be forgiving */
     Car(const string &makeIn, const string &modelIn, const carType &typeIn,
         const int &mpgIn, const int &yearIn, const double &speedIn) {
         make = makeIn;
         model = modelIn;
+        type = typeIn;
+        mpg = mpgIn;
         year = yearIn;
         speed = speedIn;
-        mpg = mpgIn;
         uniqID = idCounter++;
     }
+    //Copy Constructor
     Car(Car const &other) {
         make = other.make;
         model = other.model;
+        type = other.type;
+        mpg = other.mpg;
         year = other.year;
         speed = other.speed;
-        mpg = other.mpg;
         uniqID = idCounter++;
     }
-    Car operator=(Car const &other) {
+    //Assignment operator. Main difference is that this doesn't create a unique ID.
+    Car& operator=(const Car &other) {
+        if (this == &other) {
+            return *this;
+        }
         make = other.make;
         model = other.model;
         year = other.year;
         speed = other.speed;
         mpg = other.mpg;
-        uniqID = idCounter++;
+        uniqID = other.uniqID;
         return *this;
     }
     
@@ -92,8 +102,10 @@ public:
     const carType getType() { return type; }
     const int getID() { return uniqID; }
     
-    std::ostream& operator<<(std::ostream& os ) {
-        os << " A valid car\n";
+    //printing operator overload
+    friend std::ostream& operator<<(std::ostream& os, const Car& car) {
+        os << car.year << " " << car.make << " " << car.model <<  " with " << car.mpg << " MPG\n";
+        
         return os;
     }
 };
@@ -101,17 +113,21 @@ public:
 //Initialize static counter here
 int Car::idCounter = 1000;
 
-
 //Comparator classes for priority queues
 
 class CarSpeedLess{
     
 public:
-    bool operator()(Car car1, Car car2){
-        if (car1.getSpeed() < car2.getSpeed()) return true;
+    bool operator()(Car* car1, Car* car2){
+        if (car1->getSpeed() < car2->getSpeed()) {
+            return true;
+            
+        }
         
-        if (car1.getSpeed() == car2.getSpeed()){
-            if (car1.getMPG() > car2.getMPG()) return true;
+        if (car1->getSpeed() == car2->getSpeed()) {
+            if (car1->getMPG() > car2->getMPG())  {
+                return true;
+            }
         }
         return false;
     }
@@ -120,11 +136,11 @@ public:
 class CarMPGLess{
     
 public:
-    bool operator()(Car car1, Car car2){
-        if (car1.getMPG() < car2.getMPG()) return true;
+    bool operator()(Car* car1, Car* car2){
+        if (car1->getMPG() < car2->getMPG()) return true;
         
-        if (car1.getMPG() == car2.getMPG()){
-            if (car1.getYear() > car2.getYear()) return true;
+        if (car1->getMPG() == car2->getMPG()){
+            if (car1->getYear() > car2->getYear()) return true;
         }
         return false;
     }

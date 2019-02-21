@@ -146,12 +146,13 @@ void addCar(Garage &gar, const bool v) {
     //Construct car with these parameters
     Car entry = Car(make, model, type, mpg, year, speed);
     
+    //Add car to garage
+    gar.addCar(entry);
+    
+    //If verbose, print out the last car
     if (v) {
         cout << "added a new car!\n";
     }
-    
-    //Add car to garage
-    gar.addCar(entry);
     
     return;
 }

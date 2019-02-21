@@ -17,7 +17,8 @@
 #include <algorithm>
 
 using std::string;
-//useful
+//useful functions for input later
+
 bool iequals(const string& a, const string& b)
 {
     return std::equal(a.begin(), a.end(),
