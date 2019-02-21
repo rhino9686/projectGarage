@@ -33,5 +33,10 @@ On startup, you will just run a .exe from the command line, and will be shown a 
 Right now we are still working on the first working version, and working out the potential bugs and kinks in the UI.
 After the first version is completed, we will open up for contributors.
 
+
+## Authors
+
+* **Robert Cecil** - *Initial work* - [My Page](https://github.com/rhino9686)
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
