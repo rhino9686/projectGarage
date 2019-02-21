@@ -144,7 +144,7 @@ void addCar(Garage &gar, const bool v) {
     cout << "Thanks! adding your car";
     
     //Construct car with these parameters
-    Car entry = Car(make, model, type, mpg, year, speed);
+    Car* entry = new Car(make, model, type, mpg, year, speed);
     
     //Add car to garage
     gar.addCar(entry);
@@ -157,6 +157,9 @@ void addCar(Garage &gar, const bool v) {
     return;
 }
 
+
+//Read in multiple cars from one file
+//TODO: set up example file and test, add final results to spec
 void addCarsByFile(Garage &gar, const bool v) {
     string fileName;
     string line;
@@ -173,7 +176,7 @@ void addCarsByFile(Garage &gar, const bool v) {
     
     return;
 }
-
+//Empties out all data from the garage
 void clearCars(Garage &gar, const bool v) {
     cout << "clearing out all cars!\n";
     

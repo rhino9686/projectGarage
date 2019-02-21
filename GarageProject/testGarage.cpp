@@ -52,3 +52,24 @@ int main() {
     
     return 0;
 }
+
+void GarageTester::garageAddCars() {
+    make = "Honda";
+    model = "Civic";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 23;
+    mpg = 32;
+    
+    Car carOne = Car(make, model, type, mpg, year, speed);
+    
+    make = "Toyota";
+    model = "Camry";
+    type = carType::SEDAN;
+    year = 2004;
+    speed = 105;
+    mpg = 29;
+    
+    Car carTwo = Car(make, model, type, mpg, year, speed);
+    
+}

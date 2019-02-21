@@ -24,13 +24,23 @@ using std::string;
 using std::vector;
 using std::priority_queue;
 
-//Class to distinct between vehicle form factors
+//Class to distinguish between vehicle form factors
 enum class carType {
     SEDAN,
     TRUCK,
     SUV,
     CROSSOVER,
     OTHER
+};
+
+//Class for runtime errors on car input
+enum class constructionError {
+    Make_error,
+    Model_error,
+    year_error,
+    speed_error,
+    mpg_error,
+    other_error
 };
 
 
@@ -136,11 +146,15 @@ public:
 class CarMPGLess{
     
 public:
-    bool operator()(Car* car1, Car* car2){
-        if (car1->getMPG() < car2->getMPG()) return true;
+    bool operator()(Car* car1, Car* car2) {
+        if (car1->getMPG() < car2->getMPG()) {
+            return true;
+        }
         
-        if (car1->getMPG() == car2->getMPG()){
-            if (car1->getYear() > car2->getYear()) return true;
+        if (car1->getMPG() == car2->getMPG()) {
+            if (car1->getYear() > car2->getYear()) {
+                return true;
+            }
         }
         return false;
     }
@@ -155,60 +169,67 @@ class Garage {
     priority_queue<Car*, vector<Car*>, CarMPGLess> efficientQueue;
     
 public:
-    //Constructors
+    //Constructor
     Garage() {
         count = 0;
     }
-    //Add a car to the garage
-    void addCar(Car newCar) {
-        cars.push_back(&newCar);
-        /*
+    
+    //Adds a car to the garage, car will be a dynamic pointer for use in multiple data structures
+    void addCar(Car* newCar) {
+        cars.push_back(newCar);
         fastestQueue.push(newCar);
         efficientQueue.push(newCar);
-         */
         count++;
     }
-    //Delete all cars from garage
+    
+    //Prepares garage to take in large amount of cars from file
+    void resize(const int &newEntries) {
+        cars.resize(count + newEntries);
+    }
+    
+    
+    //Deletes all cars from garage, takes care of dynamic memory
     void clear() {
+        
+        for(Car* car: cars){
+            delete car;
+            car = nullptr;
+        }
+        
+        //clear base vector
         cars.clear();
+        
+        //clear speed queue
+        while (!fastestQueue.empty()){
+            fastestQueue.pop();
+        }
+        //clear efficiency queue
+        while (!efficientQueue.empty()){
+            efficientQueue.pop();
+        }
+        
+        
         count = 0;
     }
     //Get the number of cars in the garage
-    int getCount() {
+    const int& getCount() {
         return count;
     }
     //Get the latest car added to garage
-    const Car& getLatestCar() {
+    const Car* getLatestCar() {
         Car* latest = cars.at(count - 1);
-        return *latest;
+        return latest;
     }
     //Get the fastest car in the garage
-    const Car& getFastestCar() {
-        Car temp = Car();
-        Car* fastest = &temp;
-        
-        for (Car* car: cars) {
-            
-            if ( car->getSpeed() > fastest->getSpeed() ) {
-                fastest = car;
-            }
-        }
-        return *fastest;
+    const Car* getFastestCar() {
+        Car* fastest = fastestQueue.top();
+        return fastest;
     }
-    
-    const Car& getMostEfficientCar() {
-        Car temp = Car();
-        Car* cleanest = &temp;
-        
-        for (Car* car: cars) {
-            
-            if ( car->getMPG() > cleanest->getMPG() ) {
-                cleanest = car;
-            }
-        }
-        return *cleanest;
+    //Gets the most efficient car in the garage
+    const Car* getMostEfficientCar() {
+        Car* mostEfficent = efficientQueue.top();
+        return mostEfficent;
     }
-    
 };
 
 
