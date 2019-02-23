@@ -14,7 +14,7 @@
 #include <fstream>
 #include <queue>
 #include "Car.h"
-//#include "ToolBox.h"
+#include "ToolBox.h"
 
 using std::cout;
 using std::cin;
@@ -23,15 +23,15 @@ using std::string;
 using std::ifstream;
 
 void printOptions() {
-    cout <<"You can: \n  Add a new car to your garage with 'add'!\n";
-    cout <<"You can: \n  Add a bunch with 'addFile!'\n";
-    cout <<"  List all your current cars with 'list!\n";
-    cout <<"  Clear your garage with 'clear' !\n";
-    cout <<"  Request for information about your cars with 'data'";
-    cout <<"  Or make your cars race with 'race'!\n";
-    cout <<"  Exit the application with 'quit'!\n";
-    cout <<"  Type 'v' to toggle verbosity on or off!\n";
-    cout <<"  Type 'help' at any time to repeat this message\n";
+    cout <<"You can: \n  Add a new car to your garage with 'add'.\n";
+    cout <<"  Add a bunch with 'addFile'.\n";
+    cout <<"  List all your current cars with 'list.\n";
+    cout <<"  Clear your garage with 'clear' \n";
+    cout <<"  Request for information about your cars with 'data'.\n";
+    cout <<"  Or make your cars race with 'race'\n";
+    cout <<"  Exit the application with 'quit'\n";
+    cout <<"  Type 'v' to toggle verbosity on or off.\n";
+    cout <<"  Type 'help' at any time to repeat this message.\n";
 
 }
 
@@ -61,6 +61,7 @@ int main(int argc, const char * argv[]) {
     do {
         cout << "What's next?:\n";
         cin >> input;
+        input = lowerCase(input);
         char inputFirstLetter = input[0];
         
         switch (inputFirstLetter)
@@ -68,6 +69,9 @@ int main(int argc, const char * argv[]) {
             case 'a': // code to be executed if input suggests an add;
                 if (input == "add") {
                     addCar(garage,v);
+                }
+                if (input == "addFile"){
+                    addCarsByFile(garage, v);
                 }
                 break;
             case 'h': // code to be executed if input suggests a help;
@@ -90,7 +94,7 @@ int main(int argc, const char * argv[]) {
                 break;
             default: // code to be executed if n doesn't match any cases
                 cout << "Command not recognized\n";
-                printOptions();
+                printf("Type 'help' to list available commands");
         }
         
         
@@ -113,49 +117,59 @@ void addCar(Garage &gar, const bool v) {
     string make;
     string model;
     
+    do {
+        cout << "What type of car?\n";
+        cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover: \n E. Other: \n";
+        cin >> selectedType;
+        //cast character to lower case so that it's not case sensitive
+        selectedType = tolower(selectedType);
+        switch (selectedType) {
+            case 'a':
+                type = carType::SUV;
+                break;
+            case 'b':
+                type = carType::SEDAN;
+                break;
+            case 'c':
+                type = carType::TRUCK;
+                break;
+            case 'd':
+                type = carType::CROSSOVER;
+                break;
+            default:
+                type = carType::OTHER;
+                break;
+        }
     
+        cout <<"What year, make, and model is your car? Enter year, then make, then model, with spaces in between";
+        cin >> year >>  make >> model;
+        cout << "What is the max speed?";
+        cin >> speed;
+        cout << "What is the average MPG?";
+        cin >> mpg;
+        cout << "Thanks! adding your car";
     
-    cout << "What type of car?\n";
-    cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover: \n E. Other: \n";
-    cin >> selectedType;
-    switch (selectedType) {
-        case 'A':
-            type = carType::SUV;
-            break;
-        case 'B':
-            type = carType::SEDAN;
-            break;
-        case 'C':
-            type = carType::TRUCK;
-            break;
-        case 'D':
-            type = carType::CROSSOVER;
-            break;
-        default:
-            type = carType::OTHER;
-            break;
-    }
+        constructionError error = Car::checkError(make, model, type, mpg, year, speed);
+        
+        if (error == constructionError::none) {
+            //Construct car with these parameters
+            Car* entry = new Car(make, model, type, mpg, year, speed);
+            //Add car to garage
+            gar.addCar(entry);
+            //If verbose, print out the last car
+            if (v) {
+                cout << "added a new car!\n";
+            }
+            return;
+        }
+        else {
+            //print out the correct error based on the returned error type
+            std::vector<string> Errortypes = { "make", "model", "year", "speed", "mpg", "unkown" };
+            int index = static_cast<int>(error);
+            cout << "You inputted an invalid " << Errortypes[index] << " for this car. Please try again\n";
+        }
+    } while(true);
     
-    cout <<"What year, make, and model is your car? Enter year, then make, then model, with spaces in between";
-    cin >> year >>  make >> model;
-    cout << "What is the max speed?";
-    cin >> speed;
-    cout << "What is the average MPG?";
-    cin >> mpg;
-    cout << "Thanks! adding your car";
-    
-    //Construct car with these parameters
-    Car* entry = new Car(make, model, type, mpg, year, speed);
-    
-    //Add car to garage
-    gar.addCar(entry);
-    
-    //If verbose, print out the last car
-    if (v) {
-        cout << "added a new car!\n";
-    }
-    
-    return;
 }
 
 // Sanitizes user input so we preserve model invariant for cars
