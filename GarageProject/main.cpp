@@ -70,7 +70,7 @@ int main(int argc, const char * argv[]) {
                 if (input == "add") {
                     addCar(garage,v);
                 }
-                if (input == "addFile"){
+                if (input == "addfile"){
                     addCarsByFile(garage, v);
                 }
                 break;
@@ -94,7 +94,7 @@ int main(int argc, const char * argv[]) {
                 break;
             default: // code to be executed if n doesn't match any cases
                 cout << "Command not recognized\n";
-                printf("Type 'help' to list available commands");
+                printf("Type 'help' to list available commands\n");
         }
         
         
