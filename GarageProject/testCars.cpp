@@ -139,3 +139,10 @@ void CarTester::carTestPrintCar() {
     printf("Cars are printing properly.\n" );
 }
 
+void CarTester::carTestInvalidParams1() {
+    
+    
+    
+    printf("Error checking working!\n" );
+}
+

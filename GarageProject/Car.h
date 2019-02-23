@@ -37,10 +37,11 @@ enum class carType {
 enum class constructionError {
     Make_error,
     Model_error,
-    year_error,
-    speed_error,
-    mpg_error,
-    other_error
+    Year_error,
+    Speed_error,
+    MPG_error,
+    Other_error,
+    none
 };
 
 
@@ -111,6 +112,8 @@ public:
     const int getMPG() { return mpg; }
     const carType getType() { return type; }
     const int getID() { return uniqID; }
+    static constructionError checkError(const string &makeIn, const string &modelIn, const carType &typeIn,
+                                        const int &mpgIn, const int &yearIn, const double &speedIn);
     
     //printing operator overload
     friend std::ostream& operator<<(std::ostream& os, const Car& car) {
@@ -120,8 +123,49 @@ public:
     }
 };
 
-//Initialize static counter here
+//Initialized static counter outside of class definition because of C++ rules for static member vars
 int Car::idCounter = 1000;
+
+/*Implemented static function outside definition as well, but as part as Car for testing purposes.
+ This function should be used as a safeguard for input validation to uphold Car invariant
+ */
+constructionError Car::checkError(const string &makeIn, const string &modelIn, const carType &typeIn,
+                                  const int &mpgIn, const int &yearIn, const double &speedIn) {
+    try {
+        
+        //Enforcing that make must be a viable name, somehow have to filter out gibberish
+        //TODO: make hashTable of known manufacturers to compare against?
+        if (makeIn == ""  || makeIn.length() > 10 ) {
+            return constructionError::Make_error;
+        }
+        //Enforcing that model must be a viable name for the manufacturer
+        //TODO: make hashTable of known models for each manufacturers?
+        if (modelIn == ""  || modelIn.length() > 10 ) {
+            return constructionError::Model_error;
+        }
+        //Enforcing that year is within reasonable range, arbitrarily setting 1980-2021 for now
+        if (yearIn < 1980  || yearIn > 2021) {
+            return constructionError::Year_error;
+        }
+        //Enforcing that speed must be nonnegative and reasonable
+        if (speedIn < 0  || speedIn > 120) {
+            return constructionError::Speed_error;
+        }
+        //Enforcing that mpg is within a reasonable range
+        if (mpgIn < 0  || mpgIn > 50) {
+            return constructionError::MPG_error;
+        }
+    } catch (...) {
+        //std::exception_ptr p = std::current_exception();
+        //if computing any of the above fail, return a generic error
+        return constructionError::Other_error;
+    }
+
+    //if everything passes, return no error
+    return constructionError::none;
+}
+
+
 
 //Comparator classes for priority queues
 
@@ -173,6 +217,11 @@ public:
     Garage() {
         count = 0;
     }
+    
+    ~Garage() {
+        clear();
+    }
+    
     
     //Adds a car to the garage, car will be a dynamic pointer for use in multiple data structures
     void addCar(Car* newCar) {

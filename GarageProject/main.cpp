@@ -114,6 +114,7 @@ void addCar(Garage &gar, const bool v) {
     string model;
     
     
+    
     cout << "What type of car?\n";
     cout << "   A. SUV \n B. Sedan \n C. Truck \n D. Crossover: \n E. Other: \n";
     cin >> selectedType;
@@ -157,8 +158,18 @@ void addCar(Garage &gar, const bool v) {
     return;
 }
 
+// Sanitizes user input so we preserve model invariant for cars
+constructionError testInput(const string &makeIn, const string &modelIn, const carType &typeIn,
+                            const int &mpgIn, const int &yearIn, const double &speedIn) {
+    
+    
+    
+    
+    
+    return constructionError::none;
+}
 
-//Read in multiple cars from one file
+// Reads in multiple cars from one file
 //TODO: set up example file and test, add final results to spec
 void addCarsByFile(Garage &gar, const bool v) {
     string fileName;
@@ -176,18 +187,31 @@ void addCarsByFile(Garage &gar, const bool v) {
     
     return;
 }
+
+
 //Empties out all data from the garage
 void clearCars(Garage &gar, const bool v) {
-    cout << "clearing out all cars!\n";
+    int count = gar.getCount();
+    if (count == 0) {
+        return;
+    }
+    gar.clear();
     
+    if (v) {
+        cout << "cleared out " << count << " cars\n";
+    }else {
+        cout << "clearing out all cars!\n";
+    }
     return;
 }
 
+//TODO: implement
 void raceCars(Garage &gar, const bool v) {
     cout<< "racing cars!";
     return;
 }
-
+//TODO: make stringstream function return from garage
 void listCars(Garage &gar, const bool v) {
+    cout << "listing all cars";
     return;
 }
