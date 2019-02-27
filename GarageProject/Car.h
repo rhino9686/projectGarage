@@ -231,6 +231,13 @@ public:
         count++;
     }
     
+    //Adds a list of cars to the garage, cars will be in a vector of dynamic pointers
+    void addCars(vector <Car*> &newCars) {
+        for (auto &entryfromVector: newCars) {
+            addCar(entryfromVector);
+        }
+    }
+    
     //Prepares garage to take in large amount of cars from file
     void resize(const int &newEntries) {
         cars.resize(count + newEntries);
@@ -242,6 +249,7 @@ public:
         
         for(Car* car: cars){
             delete car;
+            //std::cout << "cleared one car\n";
             car = nullptr;
         }
         
@@ -251,12 +259,13 @@ public:
         //clear speed queue
         while (!fastestQueue.empty()){
             fastestQueue.pop();
+           // std::cout << "cleared one car\n";
         }
         //clear efficiency queue
         while (!efficientQueue.empty()){
             efficientQueue.pop();
+            //std::cout << "cleared one car\n";
         }
-        
         
         count = 0;
     }

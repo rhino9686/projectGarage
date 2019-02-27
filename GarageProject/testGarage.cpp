@@ -30,7 +30,7 @@ class GarageTester {
     
 public:
     GarageTester() {
-        
+        Gar = Garage();
     }
 
     void garageAddCars();
@@ -48,6 +48,7 @@ public:
 
 int main() {
     GarageTester garTests = GarageTester();
+    garTests.garageAddCars();
 
     
     return 0;
@@ -61,7 +62,7 @@ void GarageTester::garageAddCars() {
     speed = 23;
     mpg = 32;
     
-    Car carOne = Car(make, model, type, mpg, year, speed);
+    Car* carOne = new Car(make, model, type, mpg, year, speed);
     
     make = "Toyota";
     model = "Camry";
@@ -70,6 +71,25 @@ void GarageTester::garageAddCars() {
     speed = 105;
     mpg = 29;
     
-    Car carTwo = Car(make, model, type, mpg, year, speed);
+    Car* carTwo = new Car(make, model, type, mpg, year, speed);
+    
+    make = "Chevrolet";
+    model = "Camaro";
+    type = carType::SEDAN;
+    year = 2007;
+    speed = 79;
+    mpg = 35;
+    
+    Car* carThree = new Car(make, model, type, mpg, year, speed);
+    
+    Gar.addCar(carOne);
+    Gar.addCar(carTwo);
+    Gar.addCar(carThree);
+    
+    cout << Gar.getCount() << endl;
+    Gar.clear();
+    
+    cout << Gar.getCount() << endl;
+    
     
 }

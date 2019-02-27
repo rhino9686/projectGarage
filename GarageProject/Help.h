@@ -19,7 +19,7 @@ using std::cout;
 #endif /* Help_h */
 
 void printHelpMessage() {
-    string myString =
+    string helpString =
      "Usage rules for the garage program: \n"
      
      "Commands: \n"
@@ -31,7 +31,7 @@ void printHelpMessage() {
     " 'quit': exits the program. \n "
      
     " VERBOSITY: \n "
-    " 'V' will toggle verbosity of the program, which controls how much output\n
+    " 'v' will toggle verbosity of the program, which controls how much output\n "
      " you want when you enter other commands. \n "
      
     " MULTIPLE CAR INPUT: \n "
@@ -41,6 +41,6 @@ void printHelpMessage() {
      "           [Car Make] [Model] [Type] [Year] [Speed] <end of line> \n"
     " all separated by spaces. Data should be valid, or the program will exit with an error. \n" ;
     
-    cout << myString << endl;
+    cout << helpString << std::endl;
     return;
 }
