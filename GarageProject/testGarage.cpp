@@ -49,6 +49,7 @@ public:
 int main() {
     GarageTester garTests = GarageTester();
     garTests.garageAddCars();
+    garTests.garageGetFastestCar();
 
     
     return 0;
@@ -91,5 +92,42 @@ void GarageTester::garageAddCars() {
     
     cout << Gar.getCount() << endl;
     
+}
+
+void GarageTester::garageGetFastestCar() {
+    make = "Fastest";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 200;
+    mpg = 32;
+    
+    Car* fast = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(fast);
+    
+    make = "Slowest";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 1;
+    mpg = 32;
+    
+    Car* slow = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(slow);
+    
+    make = "Medium";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 50;
+    mpg = 32;
+    
+    Car* med = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(med);
+    
+    Car* result = Gar.getFastestCar();
+    assert(result->getSpeed() == 200);
+    
+    printf("Garage returns fastest car properly.\n");
     
 }

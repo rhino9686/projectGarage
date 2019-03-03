@@ -70,42 +70,55 @@ int main(int argc, const char * argv[]) {
         {
             case 'a': // code to be executed if input suggests an add;
                 if (input == "add") {
-                    addCar(garage,v);
+                    addCar(garage, v);
                 }
                 else if (input == "addfile"){
                     addCarsByFile(garage, v);
+                } else {
+                    goto unrecognized;
                 }
                 break;
             case 'c': // code to be executed if input suggests a clear;
                 if (input == "clear") {
                     clearCars(garage, v);
+                } else {
+                    goto unrecognized;
                 }
                 break;
             case 'd': // code to be executed if input suggests an data;
                 if (input == "data") {
-                    getData(garage,v);
+                    getData(garage, v);
+                } else {
+                    goto unrecognized;
                 }
                 break;
             case 'h': // code to be executed if input suggests a help;
                 if (input == "help") {
                     printOptions();
+                } else {
+                    goto unrecognized;
                 }
-
                 break;
             case 'q': // code to be executed if input suggests a quit;
                 if (input == "quit") {
                     ended = true;
+                } else {
+                    goto unrecognized;
                 }
                 break;
 
             case 'r': // code to be executed if user wants to race;
                 if (input == "race") {
                     raceCars(garage, v);
+                } else {
+                    goto unrecognized;
                 }
                 break;
             case 'l': // code to be executed if user wants to race;
                 if (input == "list") {
                     listCars(garage, v);
+                } else {
+                    goto unrecognized;
                 }
                 break;
                 
@@ -113,8 +126,12 @@ int main(int argc, const char * argv[]) {
                 if (input == "v") {
                     toggleVerbosity(verbose);
                 }
+                else {
+                    goto unrecognized;
+                }
                 break;
             default: // code to be executed if n doesn't match any cases
+            unrecognized:
                 cout << "Command not recognized\n";
                 printf("Type 'help' to list available commands\n");
         }
@@ -123,7 +140,7 @@ int main(int argc, const char * argv[]) {
         
     } while(!ended);
     
-    cout <<"Goodbye!\n";
+    cout << "Goodbye!\n";
     
     return 0;
 }
@@ -175,7 +192,7 @@ void addCar(Garage &gar, const bool &v) {
         }
     
         cout << "What year, make, and model is your car? Enter year, make, then model, with spaces in between: \n";
-        cin >> year >>  make >> model;
+        cin >> year >> make >> model;
         cout << "What is the max speed?\n";
         cin >> speed;
         cout << "What is the average MPG?\n";
@@ -191,7 +208,7 @@ void addCar(Garage &gar, const bool &v) {
             gar.addCar(entry);
             //If verbose, print out the last car
             if (v) {
-                cout << "Added a new car!\n";
+                cout << "Added car succesfully!\n";
             }
             return;
         }
@@ -211,7 +228,7 @@ void addCar(Garage &gar, const bool &v) {
 void addCarsByFile(Garage &gar, const bool &v) {
     string fileName;
     string line;
-    cout <<"give your filename to input: \n";
+    cout << "give your filename to input: \n";
     cin >> fileName;
     ifstream inputFile(fileName);
     if (!inputFile.is_open()) {
@@ -237,7 +254,7 @@ void clearCars(Garage &gar, const bool &v) {
     
     if (v) {
         cout << "cleared out " << count << " cars\n";
-    }else {
+    } else {
         cout << "clearing out all cars!\n";
     }
     return;
@@ -248,14 +265,26 @@ void raceCars(Garage &gar, const bool &v) {
     cout<< "racing cars!\n";
     return;
 }
-//TODO: make stringstream function return from garage
+
+//lists all cars in the garage currently
 void listCars(Garage &gar, const bool &v) {
-    cout << "listing all cars\n";
+    cout << "listing all cars:\n";
+    gar.listCars();
     return;
 }
 
+//TODO: test garage functions in testGarage to make sure this will work properly
 void getData(Garage &gar, const bool &v) {
     cout << "here's your data\n";
+    
+    auto latest = gar.getLatestCar();
+    auto fastest = gar.getFastestCar();
+    auto efficient = gar.getMostEfficientCar();
+    
+    cout << "Most recent car: \n" << *latest;
+    cout << "Fastest car: \n" << *fastest;
+    cout << "most efficient car: \n" << *efficient;
+    
     return;
     
 }

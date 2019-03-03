@@ -274,19 +274,50 @@ public:
         return count;
     }
     //Get the latest car added to garage
-    const Car* getLatestCar() {
+    Car* getLatestCar() {
         Car* latest = cars.at(count - 1);
         return latest;
     }
     //Get the fastest car in the garage
-    const Car* getFastestCar() {
+    Car* getFastestCar() {
         Car* fastest = fastestQueue.top();
         return fastest;
     }
     //Gets the most efficient car in the garage
-    const Car* getMostEfficientCar() {
+    Car* getMostEfficientCar() {
         Car* mostEfficent = efficientQueue.top();
         return mostEfficent;
+    }
+    
+    const vector<Car*> getNFastestCars(const int& N) {
+        //just quit if garage is smaller than query
+        if (N > count){
+            std::cout << "garage has insufficient cars for that task";
+        }
+        
+        vector<Car*> candidates;
+        
+        // get top N fastest cars
+        for (int i = 0; i < N; i++) {
+            auto fastCar = fastestQueue.top();
+            candidates.push_back(fastCar);
+            fastestQueue.pop();
+        }
+        // put them back into PQ
+        for (Car* car: candidates) {
+            fastestQueue.push(car);
+        }
+        return candidates;
+    }
+    
+    
+    void listCars() {
+        if (count == 0) {
+            std::cout << "No cars currently in garage\n";
+        }
+        for (auto car: cars) {
+            std::cout << *car;
+        }
     }
 };
 
@@ -297,6 +328,11 @@ class Racetrack {
     
 public:
     Racetrack() {
+        
+    }
+    
+    void printRaceTrack(const int &numCars) {
+        
         
     }
 };
