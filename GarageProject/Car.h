@@ -336,6 +336,11 @@ public:
     void addRacers() {
         
     }
+    
+    void raceCars();
+    
+    Car* getWinner();
+    
     void printTrack() {
         
         int fieldHeight = 4;

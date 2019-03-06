@@ -272,6 +272,8 @@ void clearCars(Garage &gar, const bool &v) {
 void raceCars(Garage &gar, const bool &v) {
     cout << "racing cars!\n";
     Racetrack r = Racetrack(2);
+    
+    
     r.printTrack();
     
     return;
