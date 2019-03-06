@@ -41,7 +41,7 @@ public:
     void garageGetAvgSpeed();
     void garageGetAvgMPH();
     void garageGetAvgYear();
-    void carTest5();
+    void garageTest5();
     
 };
 
@@ -88,9 +88,13 @@ void GarageTester::garageAddCars() {
     Gar.addCar(carThree);
     
     cout << Gar.getCount() << endl;
+    assert(Gar.getCount() == 3 );
     Gar.clear();
     
     cout << Gar.getCount() << endl;
+    assert(Gar.getCount() == 0);
+    
+     printf("Garage adds and clears cars properly.\n");
     
 }
 
@@ -99,7 +103,7 @@ void GarageTester::garageGetFastestCar() {
     model = "Car";
     type = carType::SEDAN;
     year = 2010;
-    speed = 200;
+    speed = 20;
     mpg = 32;
     
     Car* fast = new Car(make, model, type, mpg, year, speed);
@@ -119,14 +123,14 @@ void GarageTester::garageGetFastestCar() {
     model = "Car";
     type = carType::SEDAN;
     year = 2010;
-    speed = 50;
+    speed = 5;
     mpg = 32;
     
     Car* med = new Car(make, model, type, mpg, year, speed);
     Gar.addCar(med);
     
     Car* result = Gar.getFastestCar();
-    assert(result->getSpeed() == 200);
+    assert(result->getSpeed() == 20);
     
     printf("Garage returns fastest car properly.\n");
     

@@ -197,7 +197,7 @@ void addCar(Garage &gar, const bool &v) {
         cin >> speed;
         cout << "What is the average MPG?\n";
         cin >> mpg;
-        cout << "Thanks! adding your car...\n";
+        cout << "Thanks! processing...\n";
     
         constructionError error = Car::checkError(make, model, type, mpg, year, speed);
         
@@ -216,7 +216,15 @@ void addCar(Garage &gar, const bool &v) {
             //print out the correct error based on the returned error type
             std::vector<string> Errortypes = { "make", "model", "year", "speed", "mpg", "unkown" };
             int index = static_cast<int>(error);
-            cout << "You inputted an invalid " << Errortypes[index] << " for this car. Please try again\n";
+            cout << "ERROR: You inputted an invalid " << Errortypes[index] << " for this car. Please try again\n";
+           
+            //clear the cin buffer if user typed in extra words or newlines
+            char temp[20];
+            cin.getline(temp, 20);
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
         }
     } while(true);
     
@@ -262,14 +270,24 @@ void clearCars(Garage &gar, const bool &v) {
 
 //TODO: implement
 void raceCars(Garage &gar, const bool &v) {
-    cout<< "racing cars!\n";
+    cout << "racing cars!\n";
+    Racetrack r = Racetrack(2);
+    r.printTrack();
+    
     return;
 }
 
 //lists all cars in the garage currently
 void listCars(Garage &gar, const bool &v) {
     cout << "listing all cars:\n";
-    gar.listCars();
+    
+    if (v) {
+        gar.listCars();
+    }
+    else {
+        cout << "Total cars: " << gar.getCount() << " \n";
+    }
+
     return;
 }
 

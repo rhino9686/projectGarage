@@ -323,17 +323,52 @@ public:
 
 
 class Racetrack {
-    int numCars = 0;
+    int numRacers = 0;
+    vector<Car*> racers;
     Car* winner = nullptr;
     
 public:
-    Racetrack() {
+    Racetrack(const int& numRacersIn) {
+        numRacers = numRacersIn;
         
     }
     
-    void printRaceTrack(const int &numCars) {
-        
+    void addRacers() {
         
     }
+    void printTrack() {
+        
+        int fieldHeight = 4;
+        int fieldWidth = 5;
+        std::cout << " ";
+        
+        for(int lon = 0; lon < fieldWidth; lon++) {
+            std::cout << (lon % 10);
+        }
+        std::cout << "\n";
+        for (int lat = 0; lat < fieldHeight; lat++) {
+            std::cout <<(lat % 10);
+            
+            for (int lon = 0; lon < fieldWidth; lon++) {
+                
+                char charToPrint = '-';
+                
+                /*
+                for (Car* player:racers){
+
+                    if (player->getRoundedXCoor() == lon && player->getRoundedYCoor() == lat){
+                        
+                        charToPrint = player->getSymbol();
+                    }
+                    
+                }//for
+                 */
+                std::cout << charToPrint;
+                
+            }//for
+
+            std:: cout << "\n";
+        }//for
+    };
 };
 
