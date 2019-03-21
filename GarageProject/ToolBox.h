@@ -10,8 +10,6 @@
 #define ToolBox_h
 #pragma once
 
-#endif /* ToolBox_h */
-
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -39,3 +37,4 @@ char lowerCase(const char& input) {
     return tolower(input);
 }
 
+#endif /* ToolBox_h */

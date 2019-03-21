@@ -16,7 +16,6 @@
 using std::string;
 using std::cout;
 
-#endif /* Help_h */
 
 void printHelpMessage() {
     string helpString =
@@ -44,3 +43,5 @@ void printHelpMessage() {
     cout << helpString << std::endl;
     return;
 }
+
+#endif /* Help_h */
