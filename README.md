@@ -9,7 +9,7 @@ Just download the files, will make a Tar.gz later for easy downloading
 
 ## Building
 There will be a makefile with build commands later.
-We will start with `make tests` and `make db`, as our first simple commands
+We will start with `make tests` and `make garage`, as our first simple commands
 
 
 ## Testing
@@ -23,7 +23,8 @@ On startup, you will just run a .exe from the command line, and will be shown a 
 
 ### Commands 
 
-```Coming soon!
+```
+Coming soon!
 ```
 
 
