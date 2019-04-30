@@ -73,11 +73,22 @@ const int Car::getID() { return uniqID; }
 //Initialized static counter outside of class definition because of C++ rules for static member vars
 int Car::idCounter = 1000;
 
+
+//Initialized a static map for mapping strings to car types since types don't convert implicitly
 std::unordered_map<string, carType> Car::types = {
     {"sedan",carType::SEDAN}, {"truck",carType::TRUCK},
     {"crossover",carType::CROSSOVER}, {"suv",carType::SUV},
     {"other",carType::OTHER }
 };
+
+
+// Static function to clear a vector of dynamic car pointers
+void Car::clearCarVec(vector<Car*> carVec) {
+    for (auto car: carVec) {
+        delete car;
+    }
+}
+
 
 /*Implemented static function as well, but as part as Car for testing purposes.
  This function should be used as a safeguard for input validation to uphold Car invariant */
@@ -96,12 +107,12 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
         if (modelIn == ""  || modelIn.length() > 10 ) {
             return constructionError::Model_error;
         }
-        //Enforcing that year is within reasonable range, arbitrarily setting 1980-2021 for now
-        if (yearIn < 1980  || yearIn > 2021) {
+        //Enforcing that year is within reasonable range, arbitrarily setting 1970-2021 for now
+        if (yearIn < 1970  || yearIn > 2021) {
             return constructionError::Year_error;
         }
         //Enforcing that speed must be nonnegative and reasonable
-        if (speedIn < 0  || speedIn > 120) {
+        if (speedIn < 0  || speedIn > 150) {
             return constructionError::Speed_error;
         }
         //Enforcing that mpg is within a reasonable range

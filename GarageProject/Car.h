@@ -81,6 +81,8 @@ public:
     const int getID() { return uniqID; }
     static constructionError checkError(const string &makeIn, const string &modelIn, const carType &typeIn,
                                         const int &mpgIn, const int &yearIn, const double &speedIn);
+    
+    static void clearCarVec(vector<Car*> carVec );
     static std::unordered_map<string, carType> types;
     
     //printing operator overload

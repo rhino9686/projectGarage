@@ -46,7 +46,7 @@ void readJSON(const string& inputFile, std::unordered_map<string, vector<string>
     // TODO: implement parsing
 }
 
-vector<string> splitString(const char delim, string& inputString) {
+vector<string> splitString(string& inputString) {
     vector<string> stringArr;
     std::istringstream iss(inputString);
     

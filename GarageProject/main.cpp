@@ -47,8 +47,6 @@ void getData(Garage &gar, const bool &v);
 static std::unordered_map< string, vector<string> > knownMakers;
 
 
-
-
 int main(int argc, const char * argv[]) {
     //This is entry point, no command flags right now
     //Just starting with a user prompt
@@ -130,8 +128,7 @@ int main(int argc, const char * argv[]) {
             case 'v': // code to be executed if input is 'v';
                 if (input == "v") {
                     toggleVerbosity(verbose);
-                }
-                else {
+                } else {
                     goto unrecognized;
                 }
                 break;
@@ -153,8 +150,7 @@ int main(int argc, const char * argv[]) {
 void toggleVerbosity(bool &verbose) {
     if(!verbose) {
         cout << "output verbosity on\n";
-    }
-    else {
+    } else {
         cout << "output verbosity off\n";
     }
     verbose = !verbose;
@@ -250,7 +246,7 @@ void addCar(Garage &gar, const bool &v) {
 
 
 // Reads in multiple cars from one file
-//TODO: set up example file and test, add final results to spec
+//TODO: add verbose option, maybe specific error mentioning?
 void addCarsByFile(Garage &gar, const bool &v) {
     string fileName;
     string line;
@@ -261,6 +257,7 @@ void addCarsByFile(Garage &gar, const bool &v) {
         cout << "can't open that file, try again later\n";
     }
     
+
     
     string typeStr;
     carType type;
@@ -269,19 +266,21 @@ void addCarsByFile(Garage &gar, const bool &v) {
     string model;
     int speed;
     int mpg;
+    vector<Car*> carsQueue;
     
     
     while (getline(inputFile,line) ) {
+        // Get each car line from input file and put it in a data vector
         vector<string> carData;
-        // cout << line << '\n';
+        carData = splitString(line);
         
-        carData = splitString(' ', line);
-        for (auto car:carData)
+        /*for (auto car:carData)
             cout << car << " ";
         cout << endl;
+         */ //later feature for verbosity?
         
         // extract info from split string
-        typeStr = carData[0];
+        typeStr = lowerCase(carData[0]);
         type = Car::types[typeStr];
         
         year = std::stoi(carData[1]);
@@ -290,15 +289,23 @@ void addCarsByFile(Garage &gar, const bool &v) {
         speed = std::stoi(carData[4]);
         mpg = std::stoi(carData[5]);
         
-        
         constructionError error = Car::checkError(make, model, type, mpg, year, speed);
         
+        // Clear out queue and exit if any of the input is invalid
+        if ( error != constructionError::none ) {
+            Car::clearCarVec(carsQueue);
+            cout << "Error. This file contains an invalid car somewhere! No cars added.\n";
+            inputFile.close();
+            return;
+        }
+        
+        Car* entry = new Car(make, model, type, mpg, year, speed);
+        carsQueue.push_back(entry);
         
     }
     
-    
-    
-    
+    // Add all cars to garage
+    gar.addCars(carsQueue);
     inputFile.close();
     
     return;
@@ -339,8 +346,7 @@ void listCars(Garage &gar, const bool &v) {
     
     if (v) {
         gar.listCars();
-    }
-    else {
+    } else {
         cout << "Total cars: " << gar.getCount() << " \n";
     }
 
