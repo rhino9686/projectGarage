@@ -16,6 +16,7 @@
 #include "Car.h"
 #include "Help.h"
 #include "ToolBox.h"
+#include <unordered_map>
 
 using std::cout;
 using std::cin;
@@ -42,6 +43,10 @@ void raceCars(Garage &gar, const bool &v);
 void clearCars(Garage &gar, const bool &v);
 void listCars(Garage &gar, const bool &v);
 void getData(Garage &gar, const bool &v);
+
+static std::unordered_map< string, vector<string> > knownMakers;
+
+
 
 
 int main(int argc, const char * argv[]) {
@@ -216,8 +221,7 @@ void addCar(Garage &gar, const bool &v) {
             //print out the correct error based on the returned error type
             std::vector<string> Errortypes = { "make", "model", "year", "speed", "mpg", "unkown" };
             int index = static_cast<int>(error);
-            cout << "ERROR: You inputted an invalid " << Errortypes[index] << " for this car. Please try again\n";
-           
+            
             //clear the cin buffer if user typed in extra words or newlines
             char temp[20];
             cin.getline(temp, 20);
@@ -225,6 +229,20 @@ void addCar(Garage &gar, const bool &v) {
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
+            
+            string tryAgain;
+            
+            cout << "ERROR: You inputted an invalid " << Errortypes[index] << " for this car. Try again? \n"
+            " Y or N  \n";
+           
+            cin >> tryAgain;
+            
+            tryAgain = lowerCase(tryAgain);
+            
+            if (tryAgain == "n" || tryAgain == "no" ) {
+                return;
+            }
+
         }
     } while(true);
     
@@ -242,9 +260,45 @@ void addCarsByFile(Garage &gar, const bool &v) {
     if (!inputFile.is_open()) {
         cout << "can't open that file, try again later\n";
     }
+    
+    
+    string typeStr;
+    carType type;
+    int year;
+    string make;
+    string model;
+    int speed;
+    int mpg;
+    
+    
     while (getline(inputFile,line) ) {
-        cout << line << '\n';
+        vector<string> carData;
+        // cout << line << '\n';
+        
+        carData = splitString(' ', line);
+        for (auto car:carData)
+            cout << car << " ";
+        cout << endl;
+        
+        // extract info from split string
+        typeStr = carData[0];
+        type = Car::types[typeStr];
+        
+        year = std::stoi(carData[1]);
+        make = carData[2];
+        model = carData[3];
+        speed = std::stoi(carData[4]);
+        mpg = std::stoi(carData[5]);
+        
+        
+        constructionError error = Car::checkError(make, model, type, mpg, year, speed);
+        
+        
     }
+    
+    
+    
+    
     inputFile.close();
     
     return;

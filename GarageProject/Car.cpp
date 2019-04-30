@@ -73,6 +73,12 @@ const int Car::getID() { return uniqID; }
 //Initialized static counter outside of class definition because of C++ rules for static member vars
 int Car::idCounter = 1000;
 
+std::unordered_map<string, carType> Car::types = {
+    {"sedan",carType::SEDAN}, {"truck",carType::TRUCK},
+    {"crossover",carType::CROSSOVER}, {"suv",carType::SUV},
+    {"other",carType::OTHER }
+};
+
 /*Implemented static function as well, but as part as Car for testing purposes.
  This function should be used as a safeguard for input validation to uphold Car invariant */
 
@@ -111,7 +117,6 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
     //if everything passes, return no error
     return constructionError::none;
 }
-
 
 
 //Garage Priority Queue Comparators

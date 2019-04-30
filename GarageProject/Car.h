@@ -16,6 +16,7 @@
 #include <vector>
 #include <queue>
 #include <cstdlib>
+#include <unordered_map>
 
 #define INVALID_ID -23
 
@@ -56,6 +57,8 @@ class Car {
     static int idCounter;
     carType type;
     
+    
+    
 public:
     //Default constructor, may revise with better default values
     Car();
@@ -78,6 +81,7 @@ public:
     const int getID() { return uniqID; }
     static constructionError checkError(const string &makeIn, const string &modelIn, const carType &typeIn,
                                         const int &mpgIn, const int &yearIn, const double &speedIn);
+    static std::unordered_map<string, carType> types;
     
     //printing operator overload
     friend std::ostream& operator<<(std::ostream& os, const Car& car) {
@@ -91,8 +95,9 @@ public:
 //Comparator classes for priority queues
 
 class CarSpeedLess{
-    public:
-        bool operator()(Car* car1, Car* car2);
+    
+public:
+    bool operator()(Car* car1, Car* car2);
 };
 
 class CarMPGLess{
@@ -155,14 +160,19 @@ class Racetrack {
     Car* winner = nullptr;
     
 public:
+    //Constructor
     Racetrack(const int& numRacersIn);
     
+    //Add Cars from an external source
     void addRacers();
     
+    //Simulate a race to see who is the winner
     void raceCars();
     
+    //Return the Winner of the race , nullptr if there hasn't been a race yet
     Car* getWinner();
     
+    //Utility function to print the racetrack with each iteration of the
     void printTrack();
 };
 

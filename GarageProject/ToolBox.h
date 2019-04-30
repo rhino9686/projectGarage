@@ -13,9 +13,14 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <unordered_map>
 
 using std::string;
+using std::vector;
 //useful functions for input later
+
+
+
 
 bool iequals(const string& a, const string& b) {
     return std::equal(a.begin(), a.end(),
@@ -36,5 +41,21 @@ string lowerCase(const string& input) {
 char lowerCase(const char& input) {
     return tolower(input);
 }
+
+void readJSON(const string& inputFile, std::unordered_map<string, vector<string>>& myMap ) {
+    // TODO: implement parsing
+}
+
+vector<string> splitString(const char delim, string& inputString) {
+    vector<string> stringArr;
+    std::istringstream iss(inputString);
+    
+    for(string s; iss >> s; ) {
+        stringArr.push_back(s);
+    }
+    
+    return stringArr;
+}
+
 
 #endif /* ToolBox_h */
