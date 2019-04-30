@@ -215,7 +215,7 @@ void addCar(Garage &gar, const bool &v) {
         }
         else {
             //print out the correct error based on the returned error type
-            std::vector<string> Errortypes = { "make", "model", "year", "speed", "mpg", "unkown" };
+            std::vector<string> Errortypes = { "make", "model", "year", "speed", "mpg", "parameter" };
             int index = static_cast<int>(error);
             
             //clear the cin buffer if user typed in extra words or newlines
@@ -232,7 +232,6 @@ void addCar(Garage &gar, const bool &v) {
             " Y or N  \n";
            
             cin >> tryAgain;
-            
             tryAgain = lowerCase(tryAgain);
             
             if (tryAgain == "n" || tryAgain == "no" ) {
