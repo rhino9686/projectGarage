@@ -2,5 +2,4 @@
  Truck 2007 Dodge Ram 99 17
  SUV   2012 Chevrolet Escalade 102 18
  Other 2009 Toyota Prius 116 47 
- Sedan 2017 Tesla Model3 120 99
- 
+ Sedan 2017 Tesla Model3 120 0

@@ -35,13 +35,15 @@ public:
 
     void garageAddCars();
     void garageFetchCars();
+    
     void garageGetFastestCar();
     void garageGetEfficientCar();
+    void garageGetLatestCar();
     void garageGetSlowestCar();
+    
     void garageGetAvgSpeed();
     void garageGetAvgMPH();
     void garageGetAvgYear();
-    void garageTest5();
     
 };
 
@@ -51,7 +53,7 @@ int main() {
     garTests.garageAddCars();
     garTests.garageGetFastestCar();
     garTests.garageGetEfficientCar();
-
+    garTests.garageGetLatestCar();
     
     return 0;
 }
@@ -174,3 +176,42 @@ void GarageTester::garageGetEfficientCar() {
     printf("Garage returns most efficient car properly.\n");
     
 }
+
+void GarageTester::garageGetLatestCar() {
+    make = "Efficient";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 20;
+    mpg = 40;
+    
+    Car* efficient = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(efficient);
+    
+    make = "Gas";
+    model = "Guzzler";
+    type = carType::TRUCK;
+    year = 2010;
+    speed = 1;
+    mpg = 16;
+    
+    Car* guzzler = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(guzzler);
+    
+    make = "Medium";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 5;
+    mpg = 20;
+    
+    Car* med = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(med);
+    
+    Car* result = Gar.getLatestCar();
+    assert(result->getMPG() == 20);
+    
+    printf("Garage returns most recent car properly.\n");
+    
+}
+
