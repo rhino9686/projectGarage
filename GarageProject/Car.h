@@ -153,6 +153,13 @@ public:
     
     //Lists all the cars in garage, by order that they were put in
     void listCars();
+    
+    //Get the average speed of all cars in garage
+    const double getAvgSpeed();
+    
+    //Get the average MPG of all cars in garage
+    const double getAvgMpg();
+    
 };
 
 

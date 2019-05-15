@@ -269,6 +269,31 @@ void Garage::listCars() {
     for (auto car: cars) {
         std::cout << *car;
     }
+    
+}
+
+const double Garage::getAvgSpeed() {
+    double avgSpeed = 0;
+    
+    for (auto car: cars) {
+        avgSpeed += car->getSpeed();
+    }
+    avgSpeed /= count;
+    
+    return avgSpeed;
+}
+
+//Get the average MPG of all cars in garage
+const double Garage::getAvgMpg() {
+    double avgMPG = 0;
+    
+    for (auto car: cars) {
+        avgMPG += car->getMPG();
+    }
+    avgMPG /= count;
+    
+    return avgMPG;
+    
 }
 
 

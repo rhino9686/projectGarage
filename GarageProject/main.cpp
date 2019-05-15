@@ -360,9 +360,15 @@ void getData(Garage &gar, const bool &v) {
     auto fastest = gar.getFastestCar();
     auto efficient = gar.getMostEfficientCar();
     
+    double avgSpeed = gar.getAvgSpeed();
+    double avgMPG = gar.getAvgMpg();
+    
     cout << "Most recent car: \n" << *latest;
     cout << "Fastest car: \n" << *fastest;
-    cout << "most efficient car: \n" << *efficient;
+    cout << "Most efficient car: \n" << *efficient;
+    
+    cout << "Average speed of cars: " << avgSpeed << " \n";
+    cout << "Average mpg of cars: " << avgMPG << " \n";
     
     return;
     

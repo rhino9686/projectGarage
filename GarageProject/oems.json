@@ -1,0 +1,58 @@
+{
+    "honda": {
+       "cars": ["civic", "oddysey", "pilot", "accord",
+                "clarity", "crv", "hrv" ]
+    },
+
+    "toyota": {
+        "cars":[]
+    },
+
+    "mazda": {
+        "cars":[]
+    },
+
+    "chrysler": {
+        "cars":[]
+    },
+
+    "dodge": {
+        "cars":[]
+    },
+
+    "nissan": {
+        "cars":[]
+    },
+
+    "tesla": {
+        "cars":[]
+    },
+
+    "ford": {
+        "cars":[]
+    },
+
+    "chevrolet": {
+        "cars":[]
+    },
+
+    "acura": {
+        "cars":[]
+    },
+
+    "rivian": {
+        "cars":[]
+    },
+
+    "hyundai": {
+        "cars":[]
+    },
+
+    "volkswagen": {
+        "cars":[]
+    },
+    
+    "kia": {
+        "cars":[]
+    }
+}

@@ -54,7 +54,8 @@ int main() {
     garTests.garageGetFastestCar();
     garTests.garageGetEfficientCar();
     garTests.garageGetLatestCar();
-    
+    garTests.garageGetAvgSpeed();
+    garTests.garageGetAvgMPH();
     return 0;
 }
 
@@ -215,3 +216,88 @@ void GarageTester::garageGetLatestCar() {
     
 }
 
+void GarageTester::garageGetAvgSpeed() {
+    
+    //clears out all past cars added
+    Gar.clear();
+    
+    make = "Efficient";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 20;
+    mpg = 40;
+    
+    Car* efficient = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(efficient);
+    
+    make = "Gas";
+    model = "Guzzler";
+    type = carType::TRUCK;
+    year = 2010;
+    speed = 1;
+    mpg = 16;
+    
+    Car* guzzler = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(guzzler);
+    
+    make = "Medium";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 5;
+    mpg = 20;
+    
+    Car* med = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(med);
+    
+    double avgSpeed = Gar.getAvgSpeed();
+    double calcSpeedAvg = (double)(5 + 1 + 20)/(3);
+    assert(avgSpeed - calcSpeedAvg < .01);
+    
+    printf("Garage calculates Average speed properly.\n");
+    
+}
+
+void GarageTester::garageGetAvgMPH() {
+    
+    //clears out all past cars added
+    Gar.clear();
+    
+    make = "Efficient";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 20;
+    mpg = 40;
+    
+    Car* efficient = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(efficient);
+    
+    make = "Gas";
+    model = "Guzzler";
+    type = carType::TRUCK;
+    year = 2010;
+    speed = 1;
+    mpg = 16;
+    
+    Car* guzzler = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(guzzler);
+    
+    make = "Medium";
+    model = "Car";
+    type = carType::SEDAN;
+    year = 2010;
+    speed = 5;
+    mpg = 20;
+    
+    Car* med = new Car(make, model, type, mpg, year, speed);
+    Gar.addCar(med);
+    
+    double avMPG = Gar.getAvgMpg();
+    double calcMPGAvg = (double)(40 + 16 + 20)/(3);
+    assert(avMPG - calcMPGAvg < .01);
+    
+    printf("Garage calculates Average MPG properly.\n");
+    
+}
