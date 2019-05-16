@@ -10,21 +10,31 @@ We will make a Tar.gz later for easy downloading when we have a stable build. Fo
 There will be a makefile with build commands later.
 We will start with `make tests` and `make garage`, as our first simple commands.
 
-To build the main application, use `make garage` 
+To build the main application, use `make garage`.
+To compile the test suites, use `make tests`.
 
 ### Usage
 On startup, you will just run the `./garage` executable from the command line, and will be shown a startup message.
 
-### Testing
-We are making our own unit test files with the C assert library. The two test files right now are testCars.cpp and testGarage.cpp, which cover most functionality.
+#### The Car:
+		The model for a car contains a few fields:
 
-### Commands 
+		‘Make’:
+		‘Model’:
+		‘Year’:
+		‘Speed’:
+		‘Mpg’:
+		‘Type’:
+		‘uniqID’:
+
 
 ```
 Coming soon!
 ```
 
-
+### Testing
+We are making our own unit test files with the C assert library. The two test files right now are testCars.cpp and testGarage.cpp, which cover most functionality.
+To run the tests make the test executables with the `make tests` command and run each one separately.
 
 
 ## Contributing
