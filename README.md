@@ -37,11 +37,14 @@ On startup, you will just run the `./garage` executable from the command line, a
     'Quit' : exits the program.    
         
     VERBOSITY:    
-    'V' will toggle verbosity of the program, which controls how much output you want when you enter other commands.    
+    'V' will toggle verbosity of the program, 
+    which controls how much output you want when you enter other commands.    
         
     MULTIPLE CAR INPUT:    
-    ‘Addfile' will allow you to submit a text file with car data to input multiple cars at once. It should be a plaintext document, [.txt or equivalent].   
-    file input format should be split into lines of parameters, with each line formatted as such:    
+    ‘Addfile' will allow you to submit a text file with car data to input multiple cars at once. 
+    It should be a plaintext document, [.txt or equivalent].   
+    file input format should be split into lines of parameters,
+     with each line formatted as such:    
 
         [Car Make] [Model] [Type] [Year] [Speed] <end of line> 
     
