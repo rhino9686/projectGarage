@@ -5,7 +5,7 @@ garage: garage.o
 garage.o: main.cpp Car.h Car.cpp ToolBox.h Help.h
 	g++ -c garage.o Car.cpp main.cpp
 
-test: testCars.o testGarage.o
+tests: testCars.o testGarage.o
 	g++ -o carTests testCars.o
 	g++ -o garageTests testGarage.o
 

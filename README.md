@@ -28,7 +28,7 @@ On startup, you will just run the `./garage` executable from the command line, a
 		‘uniqID’:
     Usage rules for the garage program:  
         
-    COMMANDS:  
+#### Commands:  
     'Add'  : adds a singular car to your garage.   
     'Clear': clears all cars from the garage.  
     'List' : lists all cars currently in your garage.  
@@ -36,11 +36,13 @@ On startup, you will just run the `./garage` executable from the command line, a
     'Race' : simulates a race of your cars and tell you the winner.   
     'Quit' : exits the program.    
         
-    VERBOSITY:    
+#### Verbosity:    
     'V' will toggle verbosity of the program, 
     which controls how much output you want when you enter other commands.    
         
-    MULTIPLE CAR INPUT:    
+#### Multiple Car Input:
+    The garage program can handle multiple cars being entered, 
+    to allow large datasets to be processed.    
     ‘Addfile' will allow you to submit a text file with car data to input multiple cars at once. 
     It should be a plaintext document, [.txt or equivalent].   
     file input format should be split into lines of parameters,
@@ -51,15 +53,12 @@ On startup, you will just run the `./garage` executable from the command line, a
     All separated by spaces. Data should be valid, or the program will exit with an error.    
 
 
-
-
-
 ### Testing
 We are making our own unit test files with the C assert library. The two test files right now are testCars.cpp and testGarage.cpp, which cover most functionality.
 To run the tests make the test executables with the `make tests` command and run each one separately.
 
 
-## Contributing
+### Contributing
 Right now we are still working on the first working version, and working out the potential bugs and kinks in the UI.
 After the first version is completed, we will open up for contributors.
 

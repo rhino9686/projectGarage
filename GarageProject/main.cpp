@@ -256,8 +256,6 @@ void addCarsByFile(Garage &gar, const bool &v) {
         cout << "can't open that file, try again later\n";
     }
     
-
-    
     string typeStr;
     carType type;
     int year;
@@ -267,7 +265,7 @@ void addCarsByFile(Garage &gar, const bool &v) {
     int mpg;
     vector<Car*> carsQueue;
     
-    
+    int row = 1;
     while (getline(inputFile,line) ) {
         // Get each car line from input file and put it in a data vector
         vector<string> carData;
@@ -293,23 +291,22 @@ void addCarsByFile(Garage &gar, const bool &v) {
         // Clear out queue and exit if any of the input is invalid
         if ( error != constructionError::none ) {
             Car::clearCarVec(carsQueue);
-            cout << "Error. This file contains an invalid car somewhere! No cars added.\n";
+            cout << "Error. This file contains an invalid car on line " << row <<"! No cars added.\n";
             inputFile.close();
             return;
         }
         
         Car* entry = new Car(make, model, type, mpg, year, speed);
         carsQueue.push_back(entry);
+        row++;
         
     }
     
     // Add all cars to garage
     gar.addCars(carsQueue);
     inputFile.close();
-    
     return;
 }
-
 
 //Empties out all data from the garage
 void clearCars(Garage &gar, const bool &v) {

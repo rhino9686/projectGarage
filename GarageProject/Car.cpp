@@ -57,17 +57,6 @@ Car& Car::operator=(const Car &other) {
     uniqID = other.uniqID;
     return *this;
     }
-/*
-//Getters
-const string Car::getMake() { return make; }
-const string Car::getModel() { return model; }
-const int Car::getYear() { return year; }
-double Car::getSpeed() { return speed; }
-const int Car::getMPG() { return mpg; }
-const carType Car::getType() { return type; }
-const int Car::getID() { return uniqID; }
-
-*/
 
 
 //Initialized static counter outside of class definition because of C++ rules for static member vars
