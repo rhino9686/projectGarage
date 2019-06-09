@@ -351,6 +351,13 @@ void listCars(Garage &gar, const bool &v) {
 
 //TODO: test garage functions in testGarage to make sure this will work properly
 void getData(Garage &gar, const bool &v) {
+    //If garage is empty, tell the user and hold off on the data
+    
+    if (gar.getCount() == 0){
+        cout << "Garage is empty, no data available\n";
+        return;
+    }
+    
     cout << "here's your data\n";
     
     auto latest = gar.getLatestCar();
