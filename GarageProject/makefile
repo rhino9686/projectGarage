@@ -1,9 +1,12 @@
 
-garage: garage.o
-	g++ -o garage garage.o
+garage: main.o Car.o
+	g++ main.o Car.o -o garage
 
-garage.o: main.cpp Car.h Car.cpp ToolBox.h Help.h
-	g++ -c garage.o Car.cpp main.cpp
+main.o: main.cpp ToolBox.h
+	g++ -c main.cpp -o main.o
+
+Car.o: Car.cpp Car.h
+	g++ -c Car.cpp -o Car.o
 
 tests: testCars.o testGarage.o
 	g++ -o carTests testCars.o

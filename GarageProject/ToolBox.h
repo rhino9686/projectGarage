@@ -47,9 +47,9 @@ char lowerCase(const char& input) {
 }
 
 //Takes in a simple JSON file and makes a map of string (oem name) -> vector of strings (car models)
-void readJSON(const string& inputFile, std::unordered_map<string, vector<string>>& myMap ) {
+void readJSON(std::unordered_map<string, vector<string> >& myMap ) {
     string fileName = MANUFACTURERS_FILE;
-    ifstream inputFile(fileName);
+    std::ifstream inputFile(fileName);
     if (!inputFile.is_open()) {
         cout << "can't open manufacturer file, try again later\n";
     }
