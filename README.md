@@ -4,11 +4,10 @@ Project Garage is a pseudo-database for storing automobile models, running stati
 The current edition only runs as a command-line application, with no GUI or persistent data. The main purpose of this project is to strengthen knowledge of C++, OOP principles, and file input/output management.
 
 ### Installation
-We will make a Tar.gz later for easy downloading when we have a stable build. For now just download the files or clone the directory.
+We will make a tar.gz later for easy downloading when we have a stable build. For now just download the files or clone the directory.
 
 ### Building
-There will be a makefile with build commands later.
-We will start with `make tests` and `make garage`, as our first simple commands.
+There is a makefile with build commands for Linux platforms, coming soon for Windows/OS X.
 
 To build the main application, use `make garage`.
 To compile the test suites, use `make tests`.
@@ -17,7 +16,7 @@ To compile the test suites, use `make tests`.
 On startup, you will just run the `./garage` executable from the command line, and will be shown a startup message.
 
 #### The Car:
-		The model for a car contains a few fields:
+	The model for a car contains a few fields:
 
 		‘Make’:
 		‘Model’:
@@ -42,11 +41,11 @@ On startup, you will just run the `./garage` executable from the command line, a
         
 #### Multiple Car Input:
     The garage program can handle multiple cars being entered, 
-    to allow large datasets to be processed.    
+    allowing large datasets to be processed.    
     ‘Addfile' will allow you to submit a text file with car data to input multiple cars at once. 
     It should be a plaintext document, [.txt or equivalent].   
     file input format should be split into lines of parameters,
-     with each line formatted as such:    
+    with each line formatted as such:    
 
         [Car Make] [Model] [Type] [Year] [Speed] <end of line> 
     

@@ -351,7 +351,7 @@ void listCars(Garage &gar, const bool &v) {
 
 //TODO: test garage functions in testGarage to make sure this will work properly
 void getData(Garage &gar, const bool &v) {
-    //If garage is empty, tell the user and hold off on the data
+    //If garage is empty, refrain from all the pointer jazz
     
     if (gar.getCount() == 0){
         cout << "Garage is empty, no data available\n";
