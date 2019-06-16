@@ -13,10 +13,12 @@
 //#include <iostream>
 #include <fstream>
 #include <queue>
+#include <unordered_map>
+
 #include "Car.h"
 #include "Help.h"
 #include "ToolBox.h"
-#include <unordered_map>
+
 
 using std::cout;
 using std::cin;
@@ -319,9 +321,8 @@ void clearCars(Garage &gar, const bool &v) {
     
     if (v) {
         cout << "cleared out " << count << " cars\n";
-    } else {
-        cout << "clearing out all cars!\n";
     }
+    
     return;
 }
 
@@ -336,7 +337,7 @@ void raceCars(Garage &gar, const bool &v) {
     return;
 }
 
-//lists all cars in the garage currently
+//Lists all cars in the garage currently
 void listCars(Garage &gar, const bool &v) {
     cout << "listing all cars:\n";
     
@@ -349,7 +350,7 @@ void listCars(Garage &gar, const bool &v) {
     return;
 }
 
-//TODO: test garage functions in testGarage to make sure this will work properly
+//Lists statistical data of the garage cars as a whole
 void getData(Garage &gar, const bool &v) {
     //If garage is empty, refrain from all the pointer jazz
     
@@ -358,7 +359,7 @@ void getData(Garage &gar, const bool &v) {
         return;
     }
     
-    cout << "here's your data\n";
+    cout << "Latest garage data: \n";
     
     auto latest = gar.getLatestCar();
     auto fastest = gar.getFastestCar();

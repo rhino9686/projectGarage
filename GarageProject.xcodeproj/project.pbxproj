@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB762BE222AD9F14003153E4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBC6F5F521F7D797004DA3AC /* main.cpp */; };
-		CB93F9222278C0B6006895EE /* testGarage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9191A6221CB6FD00280B79 /* testGarage.cpp */; };
-		CBFCDEFE22433C8600555639 /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBFCDEF82243288E00555639 /* Car.cpp */; };
+		CBC0222222B5F3A2004CE592 /* testToolBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBC0222122B5F3A2004CE592 /* testToolBox.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +25,7 @@
 /* Begin PBXFileReference section */
 		CB9191A6221CB6FD00280B79 /* testGarage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testGarage.cpp; sourceTree = "<group>"; };
 		CBB0848A220D361200429CF5 /* ToolBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolBox.h; sourceTree = "<group>"; };
+		CBC0222122B5F3A2004CE592 /* testToolBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testToolBox.cpp; sourceTree = "<group>"; };
 		CBC6F5F221F7D797004DA3AC /* GarageProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GarageProject; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC6F5F521F7D797004DA3AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CBDA86F82202AF95000EA587 /* Help.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 				CBDA86F92202B02E000EA587 /* testCars.cpp */,
 				CB9191A6221CB6FD00280B79 /* testGarage.cpp */,
 				CBB0848A220D361200429CF5 /* ToolBox.h */,
+				CBC0222122B5F3A2004CE592 /* testToolBox.cpp */,
 			);
 			path = GarageProject;
 			sourceTree = "<group>";
@@ -133,9 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBFCDEFE22433C8600555639 /* Car.cpp in Sources */,
-				CB93F9222278C0B6006895EE /* testGarage.cpp in Sources */,
-				CB762BE222AD9F14003153E4 /* main.cpp in Sources */,
+				CBC0222222B5F3A2004CE592 /* testToolBox.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

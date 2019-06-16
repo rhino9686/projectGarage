@@ -14,6 +14,8 @@
 #include <fstream>
 #include <algorithm>
 #include <unordered_map>
+#include <vector>
+#include <sstream>
 
 #define MANUFACTURERS_FILE "oems.json"
 #define MANUFACTURERS_TEST "oemsSmall.json"
@@ -21,6 +23,7 @@
 
 using std::string;
 using std::vector;
+using std::cout;
 //useful functions for input later
 
 // Returns true if two strings are equal when not case sensitive
@@ -64,7 +67,7 @@ void readJSON(std::unordered_map<string, vector<string> >& myMap ) {
 
 //Splits a giant string into its individual words
 vector<string> splitString(string& inputString) {
-    vector<string> stringArr;
+    vector <string> stringArr;
     std::istringstream iss(inputString);
     
     for(string s; iss >> s; ) {
