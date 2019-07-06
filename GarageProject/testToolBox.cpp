@@ -9,8 +9,16 @@
 #include <stdio.h>
 #include "ToolBox.h"
 
+
 int main() {
     
+    std::unordered_map< string, vector<string> > knownMakers;
     
-    printf("Yoooo\n");
+    readJSON(knownMakers);
+    auto data = knownMakers["tesla"];
+    
+    for (auto datum: data){
+        cout << datum << std::endl;
+    }
+
 }

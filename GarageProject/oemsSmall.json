@@ -1,15 +1,8 @@
 {
-    "honda": {
-       "cars": ["civic", "oddysey", "pilot", "accord",
-                "clarity", "crv", "hrv" ]
-    },
+    "honda": ["civic", "oddysey", "pilot", "accord",
+                "clarity", "crv", "hrv" ],
 
-    "toyota": {
-        "cars":["camry"]
-    }
+    "toyota": ["camry"],
 
-    "nissan": {
-        "cars":[]
-    },
- 
+    "nissan": [],
 }

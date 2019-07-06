@@ -1,58 +1,49 @@
 {
-    "honda": {
-       "cars": ["civic", "oddysey", "pilot", "accord",
-                "clarity", "crv", "hrv" ]
-    },
+    "honda": ["civic", "oddysey", "pilot", "accord",
+        "clarity", "crv", "hrv",  ]
+    ,
 
-    "toyota": {
-        "cars":[]
-    },
+    "toyota": ["camry", "rav4", "prius", "corolla" ]
+    ,
 
-    "mazda": {
-        "cars":[]
-    },
+    "mazda": []
+    ,
 
-    "chrysler": {
-        "cars":[]
-    },
+    "chrysler": []
+    ,
 
-    "dodge": {
-        "cars":[]
-    },
-
-    "nissan": {
-        "cars":[]
-    },
-
-    "tesla": {
-        "cars":[]
-    },
-
-    "ford": {
-        "cars":[]
-    },
-
-    "chevrolet": {
-        "cars":[]
-    },
-
-    "acura": {
-        "cars":[]
-    },
-
-    "rivian": {
-        "cars":[]
-    },
-
-    "hyundai": {
-        "cars":[]
-    },
-
-    "volkswagen": {
-        "cars":[]
-    },
+    "jeep": [ "wrangler", "laredo", "cherokee" ],
     
-    "kia": {
-        "cars":[]
-    }
+    
+    "dodge": ["RAM", "dart", "durango", "charger" ]
+    ,
+
+    "nissan": ["altima", "optima", "sentra", "z" ]
+    ,
+
+    "tesla": ["roadster", "model3", "modelS", "modelX", "modelY" ],
+
+
+    "ford": ["fusion", "f150", "f250", "focus", ],
+
+    "chevrolet": [ "camaro", "silverado", "cruze",  ],
+    
+    "acura": []
+    ,
+    
+    "lexus": []
+    ,
+
+    "rivian": ["R1t", "R1s" ]
+    ,
+
+    "hyundai": [ "elantra" ]
+    ,
+
+    "volkswagen": ["beetle" ]
+    ,
+    
+    "kia": ["soul", ],
+    
+    "bmw": [  ]
 }
