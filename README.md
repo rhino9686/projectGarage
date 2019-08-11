@@ -1,6 +1,6 @@
 ## Project Garage
 
-Project Garage is a pseudo-database for storing automobile models, running statistical analyses on them, and simulating a race. The main edition will be written in C++, with possible versions written in Python and/or Java.
+Project Garage is a pseudo-database for storing automobile models, running statistical analyses on them, and simulating a race. The main edition will be written in C++, with a secondary version written in Python.
 The current edition only runs as a command-line application, with no GUI or persistent data. The main purpose of this project is to strengthen knowledge of C++, OOP principles, and file input/output management.
 
 ### Installation

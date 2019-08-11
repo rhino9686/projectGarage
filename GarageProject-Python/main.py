@@ -1,6 +1,10 @@
 # Welcome to Garage Project!
 from Car import Car, Garage
 
+## Globals to quit program and control verbosity of output
+quit_command = False
+verbose = False
+
 
 def print_options():
     my_str = "You can: "
@@ -9,31 +13,36 @@ def print_options():
 
 
 def toggle_verbosity():
-    pass
+    print("toggling Verbosity")
 
 def add_car():
-    pass
+    print("Adding car")
 
 def add_cars_from_file():
-    pass
+    print("adding cars from file")
 
 def race_cars():
-    pass
+    print("racing cars")
 
 def clear_cars():
-    pass
+    print("clearing cars")
 
 def list_cars():
-    pass
+    print("listing cars")
 
 def get_data():
-    pass
+    print("Getting data about cars")
 
 def query_data():
-    pass
+    print("querying data from cars")
 
 def help_msg():
-    pass
+    print("Help Message!")
+
+def quit_program():
+    print("Goodbye!")
+    global quit_command
+    quit_command = True
 
 
 func_map = {
@@ -45,20 +54,19 @@ func_map = {
     "list": list_cars,
     "data": get_data,
     "help": help_msg,
-    "query": query_data
+    "query": query_data,
+    "quit": quit_program,
 
 }
 
-quit_command = False
-verbose = False
 
 def main():
     print("Hello! :\n")
     while not quit_command:
         command_func = None
         user_command = input("What do you want to do next?")
-        command_func = func_map.get(user_command.lower())
-        if command_func is not None:
+        command_func = func_map.get(user_command.lower(), None)
+        if command_func:
             command_func()
         else:
             print("unrecognized command!")

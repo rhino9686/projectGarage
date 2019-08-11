@@ -1,15 +1,14 @@
 # file to contain the car class
-from typing import Any
 from enum import Enum
 import queue as Q
 
 
 class CarType(Enum):
-    SEDAN: 1
-    TRUCK: 3
-    SUV: 2
-    CROSSOVER: 4
-    OTHER: 5
+    SEDAN= 1
+    TRUCK= 3
+    SUV= 2
+    CROSSOVER= 4
+    OTHER= 5
 
 
 class Car:
