@@ -5,36 +5,48 @@ from Car import Car, Garage
 quit_command = False
 verbose = False
 
-
+## Prints the list of commands so user knows what to do
 def print_options():
     my_str = "You can: "
     print(my_str)
     return None
 
-
+# verbosity controls how much output the user gets after each action
 def toggle_verbosity():
     print("toggling Verbosity")
+    global verbose
+    verbose = not verbose
+    print ("Verbose: " + str(verbose))
 
+# adds a car to the database
 def add_car():
     print("Adding car")
 
+# adds multiple cars to database from an input file
+# if any errors pop up, doesn't add any car
 def add_cars_from_file():
     print("adding cars from file")
 
+# simulates a race of all cars in database
 def race_cars():
     print("racing cars")
 
+# empties database of all cars
 def clear_cars():
     print("clearing cars")
 
+# lists all cars in database
 def list_cars():
     print("listing cars")
 
+# lists stats about fastest car, most efficient, etc.
 def get_data():
     print("Getting data about cars")
 
+# allows user to make traditional SQL-style queries on database
 def query_data():
     print("querying data from cars")
+
 
 def help_msg():
     print("Help Message!")
@@ -61,10 +73,10 @@ func_map = {
 
 
 def main():
-    print("Hello! :\n")
+    print("Hello! \n")
     while not quit_command:
         command_func = None
-        user_command = input("What do you want to do next?")
+        user_command = input("What do you want to do next? \n")
         command_func = func_map.get(user_command.lower(), None)
         if command_func:
             command_func()
