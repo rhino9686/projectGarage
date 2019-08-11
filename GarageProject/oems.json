@@ -1,6 +1,6 @@
 {
     "honda": ["civic", "oddysey", "pilot", "accord",
-        "clarity", "crv", "hrv",  ]
+        "clarity", "crv", "hrv", "insight" ]
     ,
 
     "toyota": ["camry", "rav4", "prius", "corolla" ]
@@ -15,7 +15,7 @@
     "jeep": [ "wrangler", "laredo", "cherokee" ],
     
     
-    "dodge": ["RAM", "dart", "durango", "charger" ]
+    "dodge": ["RAM", "dart", "durango", "charger", "challenger" ]
     ,
 
     "nissan": ["altima", "optima", "sentra", "z" ]
@@ -24,7 +24,7 @@
     "tesla": ["roadster", "model3", "modelS", "modelX", "modelY" ],
 
 
-    "ford": ["fusion", "f150", "f250", "focus", ],
+    "ford": ["fusion", "f150", "f250", "focus", "mustang" ],
 
     "chevrolet": [ "camaro", "silverado", "cruze",  ],
     

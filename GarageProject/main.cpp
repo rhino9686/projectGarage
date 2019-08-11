@@ -10,11 +10,7 @@
     Welcome to Garage! An application where we hold cars and race them to see which one is the fastest.
  */
 
-//#include <iostream>
-#include <fstream>
 #include <queue>
-#include <unordered_map>
-
 #include "Car.h"
 #include "Help.h"
 #include "ToolBox.h"
@@ -26,16 +22,23 @@ using std::endl;
 using std::string;
 using std::ifstream;
 
-void printOptions() {
-    cout <<"You can: \n  Add a new car to your garage with 'add'.\n";
-    cout <<"  Add a bunch with 'addFile'.\n";
-    cout <<"  List all your current cars with 'list'.\n";
+void printOptions(bool& verbose) {
+    
+    if (verbose) {
+        printHelpMessage();
+        return;
+    }
+    
+    cout <<"  You can: \n  Add a new car to your garage with 'add'\n";
+    cout <<"  Add a bunch with 'addFile'\n";
+    cout <<"  List all your current cars with 'list'\n";
     cout <<"  Clear your garage with 'clear' \n";
-    cout <<"  Request for information about your cars with 'data'.\n";
+    cout <<"  Request for information about your cars with 'data'\n";
+    cout <<"  Print out a certain subset of cars with 'query'\n";
     cout <<"  Or make your cars race with 'race'\n";
     cout <<"  Exit the application with 'quit'\n";
-    cout <<"  Type 'v' to toggle verbosity on or off.\n";
-    cout <<"  Type 'help' at any time to repeat this message.\n";
+    cout <<"  Type 'v' to toggle verbosity on or off\n";
+    cout <<"  Type 'help' at any time to repeat this message\n";
 
 }
 void toggleVerbosity(bool& verbose);
@@ -45,6 +48,8 @@ void raceCars(Garage &gar, const bool &v);
 void clearCars(Garage &gar, const bool &v);
 void listCars(Garage &gar, const bool &v);
 void getData(Garage &gar, const bool &v);
+void queryData(Garage &gar, const bool &v);
+
 
 static std::unordered_map< string, vector<string> > knownMakers;
 
@@ -57,11 +62,12 @@ int main(int argc, const char * argv[]) {
     bool ended = false;
     bool verbose = true;
     bool& v = verbose;
+    bool notV = !verbose;
     Garage garage = Garage();
     cout <<"Hello!\n";
     cout <<"Welcome to your garage!\n";
     cout <<"what do you want to do first?\n";
-    printOptions();
+    printOptions(notV);
     
     // quasi-infinite loop to prompt for user input
     do {
@@ -72,8 +78,10 @@ int main(int argc, const char * argv[]) {
         char inputFirstLetter = input[0];
         
         switch (inputFirstLetter)
+        // Each case statement corresponds to a inputted command
+        // Goto statement will go to unrecognized option if string doesn't match up exactly
         {
-            case 'a': // code to be executed if input suggests an add;
+            case 'a':
                 if (input == "add") {
                     addCar(garage, v);
                 }
@@ -83,43 +91,46 @@ int main(int argc, const char * argv[]) {
                     goto unrecognized;
                 }
                 break;
-            case 'c': // code to be executed if input suggests a clear;
+            case 'c':
                 if (input == "clear") {
                     clearCars(garage, v);
                 } else {
                     goto unrecognized;
                 }
                 break;
-            case 'd': // code to be executed if input suggests an data;
+            case 'd':
                 if (input == "data") {
                     getData(garage, v);
                 } else {
                     goto unrecognized;
                 }
                 break;
-            case 'h': // code to be executed if input suggests a help;
+            case 'h':
                 if (input == "help") {
-                    printOptions();
+                    printOptions(v);
                 } else {
                     goto unrecognized;
                 }
                 break;
-            case 'q': // code to be executed if input suggests a quit;
+            case 'q':
                 if (input == "quit") {
+                    ended = true;
+                }
+                else if (input == "query") {
                     ended = true;
                 } else {
                     goto unrecognized;
                 }
                 break;
 
-            case 'r': // code to be executed if user wants to race;
+            case 'r':
                 if (input == "race") {
                     raceCars(garage, v);
                 } else {
                     goto unrecognized;
                 }
                 break;
-            case 'l': // code to be executed if user wants to race;
+            case 'l':
                 if (input == "list") {
                     listCars(garage, v);
                 } else {
@@ -127,14 +138,14 @@ int main(int argc, const char * argv[]) {
                 }
                 break;
                 
-            case 'v': // code to be executed if input is 'v';
+            case 'v':
                 if (input == "v") {
                     toggleVerbosity(verbose);
                 } else {
                     goto unrecognized;
                 }
                 break;
-            default: // code to be executed if n doesn't match any cases
+            default:
             unrecognized:
                 cout << "Command not recognized\n";
                 printf("Type 'help' to list available commands\n");
@@ -331,7 +342,6 @@ void raceCars(Garage &gar, const bool &v) {
     cout << "racing cars!\n";
     Racetrack r = Racetrack(2);
     
-    
     r.printTrack();
     
     return;
@@ -368,14 +378,21 @@ void getData(Garage &gar, const bool &v) {
     double avgSpeed = gar.getAvgSpeed();
     double avgMPG = gar.getAvgMpg();
     
-    cout << "Most recent car: \n" << *latest;
-    cout << "Fastest car: \n" << *fastest;
-    cout << "Most efficient car: \n" << *efficient;
+    cout << "Most recent car: \n" << *latest << '\n';
+    cout << "Fastest car: \n" << *fastest << '\n';
+    cout << "Most efficient car: \n" << *efficient << '\n';
     
     cout << "Average speed of cars: " << avgSpeed << " \n";
     cout << "Average mpg of cars: " << avgMPG << " \n";
     
     return;
     
+}
+
+
+void queryData(Garage &gar, const bool &v){
+    
+    
+    return;
 }
 

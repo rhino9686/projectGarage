@@ -83,7 +83,9 @@ public:
                                         const int &mpgIn, const int &yearIn, const double &speedIn);
     
     static void clearCarVec(vector<Car*> carVec );
+    
     static std::unordered_map<string, carType> types;
+    static std::unordered_map<string, vector<string>> manufacturerData;
     
     //printing operator overload
     friend std::ostream& operator<<(std::ostream& os, const Car& car) {

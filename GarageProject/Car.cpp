@@ -91,6 +91,8 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
         if (makeIn == ""  || makeIn.length() > 10 ) {
             return constructionError::Make_error;
         }
+        
+            
         //Enforcing that model must be a viable name for the manufacturer
         //TODO: make hashTable of known models for each manufacturers?
         if (modelIn == ""  || modelIn.length() > 10 ) {
