@@ -3,5 +3,7 @@
 
 GarageProject.xcodeproj/
 DerivedData/
+*.pyc
+
 
 

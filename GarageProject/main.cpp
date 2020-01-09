@@ -360,7 +360,7 @@ void listCars(Garage &gar, const bool &v) {
     if (v) {
         gar.listCars();
     } else {
-        cout << "Total cars: " << gar.getCount() << " \n";
+        cout << "Total cars: " << gar.getCount() << '\n';
     }
 
     return;
@@ -388,8 +388,8 @@ void getData(Garage &gar, const bool &v) {
     cout << "Fastest car: \n" << *fastest << '\n';
     cout << "Most efficient car: \n" << *efficient << '\n';
     
-    cout << "Average speed of cars: " << avgSpeed << " \n";
-    cout << "Average mpg of cars: " << avgMPG << " \n";
+    cout << "Average speed of cars: " << avgSpeed << '\n';
+    cout << "Average mpg of cars: " << avgMPG << '\n';
     
     return;
     

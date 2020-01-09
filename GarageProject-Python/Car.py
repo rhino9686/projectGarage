@@ -11,6 +11,16 @@ class CarType(Enum):
     OTHER= 5
 
 
+type_map = {
+
+    'a': CarType.SUV,
+    'b': CarType.SEDAN,
+    'c': CarType.TRUCK,
+    'd': CarType.CROSSOVER,
+    'e': CarType.OTHER
+}
+
+
 class Car:
 
     """Class to represent a car invariant"""
@@ -30,6 +40,8 @@ class Car:
         if pos is not None:
             self.pos = pos
 
+    def __str__(self):
+        return "({self.make})"
 
 
 
@@ -37,19 +49,23 @@ class Garage:
 
     """ class to represent a garage invariant"""
 
-    cars = []
-    fastestQueue = Q.PriorityQueue()
-    efficientQueue = Q.PriorityQueue()
-    
-    count = 0
 
     ## Constructor
     def __init__(self):
         self.cars = []
         self.count = 0
 
+        self.fastestQueue = Q.PriorityQueue()
+        self.efficientQueue = Q.PriorityQueue()
+
+
     def add_car(self, car_entry):
         self.cars.append(car_entry)
+
+
+    def list_cars(self):
+        for car in self.cars:
+            print(car)
 
     def clear_cars(self):
         self.cars.clear()
