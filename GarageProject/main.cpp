@@ -258,7 +258,7 @@ void addCar(Garage &gar, const bool &v) {
 
 
 // Reads in multiple cars from one file
-//TODO: add verbose option, maybe specific error mentioning?
+// If there are any errors, doesn't add any cars from file, gives error message to user
 void addCarsByFile(Garage &gar, const bool &v) {
     string fileName;
     string line;
@@ -304,7 +304,13 @@ void addCarsByFile(Garage &gar, const bool &v) {
         // Clear out queue and exit if any of the input is invalid
         if ( error != constructionError::none ) {
             Car::clearCarVec(carsQueue);
-            cout << "Error. This file contains an invalid car on line " << row <<"! No cars added.\n";
+            
+            //print out the correct error based on the returned error type
+            std::vector<string> Errortypes = { "make", "model", "year", "speed", "mpg", "parameter" };
+            int index = static_cast<int>(error);
+            
+            cout << "Error. This file contains an invalid " << Errortypes[index] << " on line " << row <<"! No cars added.\n";
+            
             inputFile.close();
             return;
         }
