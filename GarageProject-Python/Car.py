@@ -4,11 +4,19 @@ import queue as Q
 
 
 class CarType(Enum):
-    SEDAN= 1
-    TRUCK= 3
-    SUV= 2
-    CROSSOVER= 4
+    SEDAN= 1,
+    TRUCK= 3,
+    SUV= 2,
+    CROSSOVER= 4,
     OTHER= 5
+
+class ErrorType(Enum):
+    YEAR=1,
+    MAKE=2,
+    MODEL=3,
+    MPG=4,
+    SPEED=5,
+    NONE= 0
 
 
 type_map = {
@@ -62,7 +70,6 @@ class Garage:
     def add_car(self, car_entry):
         self.cars.append(car_entry)
 
-
     def list_cars(self):
         for car in self.cars:
             print(car)
@@ -74,9 +81,13 @@ class Garage:
 
     def race_cars(self):
         if self.count == 0:
-            return "no cars, no race!"
-
+            print( "no cars, no race!")
+        
+        print("racing cars!")
         return None
+
+    def error_check(self, *args):
+        return True
 
 
 class SpeedQueue(Q.PriorityQueue):

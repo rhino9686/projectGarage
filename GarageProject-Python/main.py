@@ -41,12 +41,14 @@ def add_car(gar):
     select_speed = input("What is the max speed?")
     select_mpg  = input("What is the average MPG?")
 
+  
+
+
     print("thanks! Processing...")
 
 
     # error check to make sure all values are correct and reasonable
-
-
+    error = gar.error_check(select_year, select_make, select_model, select_mpg, select_speed)
 
     # create car model, add it to the garage
     car_entry = Car(select_make,select_model,select_type,select_year,select_speed,select_mpg)
@@ -62,15 +64,15 @@ def add_cars_from_file(gar):
 
 # Simulates a race of all cars in database
 def race_cars(gar):
-    print("racing cars")
+    gar.race_cars()
 
 # Empties database of all cars
 def clear_cars(gar):
-    print("clearing cars")
+    gar.clear_cars()
 
 # Lists all cars in database
 def list_cars(gar):
-    print("listing cars")
+    gar.list_cars()
 
 # Lists stats about fastest car, most efficient, etc.
 def get_data(gar):
@@ -117,7 +119,7 @@ def main():
 
     while not quit_command:
         command_func = None
-        user_command = input("What do you want to do next? \n")
+        user_command = input("What do you want to do next?")
         command_func = func_map.get(user_command.lower(), print_unrecognized)
         command_func(gar)
 
