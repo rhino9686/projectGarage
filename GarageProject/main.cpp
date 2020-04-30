@@ -89,28 +89,28 @@ int main(int argc, const char * argv[]) {
                 else if (input == "addfile"){
                     addCarsByFile(garage, v);
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
             case 'c':
                 if (input == "clear") {
                     clearCars(garage, v);
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
             case 'd':
                 if (input == "data") {
                     getData(garage, v);
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
             case 'h':
                 if (input == "help") {
                     printOptions(v);
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
             case 'q':
@@ -120,7 +120,7 @@ int main(int argc, const char * argv[]) {
                 else if (input == "query") {
                     ended = true;
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
 
@@ -128,14 +128,14 @@ int main(int argc, const char * argv[]) {
                 if (input == "race") {
                     raceCars(garage, v);
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
             case 'l':
                 if (input == "list") {
                     listCars(garage, v);
                 } else {
-                    goto unrecognized;
+                     unrecognized();
                 }
                 break;
                 
@@ -143,13 +143,11 @@ int main(int argc, const char * argv[]) {
                 if (input == "v") {
                     toggleVerbosity(verbose);
                 } else {
-                    goto unrecognized;
+                    unrecognized();
                 }
                 break;
             default:
-            unrecognized:
-                cout << "Command not recognized\n";
-                printf("Type 'help' to list available commands\n");
+                unrecognized();
         }
         
         
