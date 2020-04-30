@@ -57,7 +57,6 @@ class Garage:
 
     """ class to represent a garage invariant"""
 
-
     ## Constructor
     def __init__(self):
         self.cars = []
@@ -96,3 +95,13 @@ class SpeedQueue(Q.PriorityQueue):
         car_tuple = (car.speed, car)
         super().put(car_tuple)
 
+
+    def clear(self):
+        while(not super().empty()):
+            _ = super().get()
+
+    def get_fastest(self):
+        fastest = super().get()
+        super().put(fastest)
+        _, fastest_obj = fastest
+        return fastest_obj

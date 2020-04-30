@@ -49,6 +49,7 @@ void clearCars(Garage &gar, const bool &v);
 void listCars(Garage &gar, const bool &v);
 void getData(Garage &gar, const bool &v);
 void queryData(Garage &gar, const bool &v);
+void unrecognized();
 
 
 static std::unordered_map< string, vector<string> > knownMakers;
@@ -156,8 +157,14 @@ int main(int argc, const char * argv[]) {
     } while(!ended);
     
     cout << "Goodbye!\n";
-    
     return 0;
+}
+
+// Prints out a response to an unrecognized command
+void unrecognized(){
+    cout << "Command not recognized\n";
+    cout << "Type 'help' to list available commands\n";
+    return;
 }
 
 void toggleVerbosity(bool &verbose) {
@@ -401,4 +408,5 @@ void queryData(Garage &gar, const bool &v){
     
     return;
 }
+
 

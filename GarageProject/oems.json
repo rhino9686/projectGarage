@@ -6,44 +6,44 @@
     "toyota": ["camry", "rav4", "prius", "corolla" ]
     ,
 
-    "mazda": []
+    "mazda": [ "miata" ]
     ,
 
-    "chrysler": []
+    "chrysler": ["pacifica", "voyager", "300" , "aspen", "pt cruiser", "sebring",  ]
     ,
 
-    "jeep": [ "wrangler", "laredo", "cherokee" ],
+    "jeep": [ "wrangler", "laredo", "cherokee", "gladiator" ],
     
     
-    "dodge": ["RAM", "dart", "durango", "charger", "challenger" ]
+    "dodge": ["ram", "dart", "durango", "charger", "challenger" ]
     ,
 
-    "nissan": ["altima", "optima", "sentra", "z" ]
+    "nissan": ["altima", "optima", "sentra", "z", "leaf" ]
     ,
 
-    "tesla": ["roadster", "model3", "modelS", "modelX", "modelY" ],
+    "tesla": ["roadster", "model3", "modelS", "modelX", "modelY", "cybertruck" ],
 
 
-    "ford": ["fusion", "f150", "f250", "focus", "mustang" ],
+    "ford": ["fusion", "f150", "f250", "focus", "mustang", "escape" ],
 
-    "chevrolet": [ "camaro", "silverado", "cruze",  ],
+    "chevrolet": [ "camaro", "silverado", "cruze", "impala", "corvette", "bolt", "volt" ],
     
-    "acura": []
+    "acura": ["rdx", "mdx", "tlx", "nsx", "ilx", "rlx" ]
     ,
     
     "lexus": []
     ,
 
-    "rivian": ["R1t", "R1s" ]
+    "rivian": ["r1t", "r1s" ]
     ,
 
-    "hyundai": [ "elantra" ]
+    "hyundai": [ "elantra", "kona" ]
     ,
 
     "volkswagen": ["beetle" ]
     ,
     
-    "kia": ["soul", ],
+    "kia": ["soul", "niro"],
     
-    "bmw": [  ]
+    "bmw": ["i3", "2", "x3", "3", "5", "m5"  ]
 }
