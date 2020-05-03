@@ -271,7 +271,7 @@ void addCarsByFile(Garage &gar, const bool &v) {
     cin >> fileName;
     ifstream inputFile(fileName);
     if (!inputFile.is_open()) {
-        cout << "can't open that file, try again later\n";
+        cout << "can't open that file, try again\n";
     }
     
     string typeStr;
@@ -367,7 +367,6 @@ void listCars(Garage &gar, const bool &v) {
     } else {
         cout << "Total cars: " << gar.getCount() << '\n';
     }
-
     return;
 }
 

@@ -82,7 +82,7 @@ public:
     static constructionError checkError(const string &makeIn, const string &modelIn, const carType &typeIn,
                                         const int &mpgIn, const int &yearIn, const double &speedIn);
     
-    static void clearCarVec(vector<Car*> carVec );
+    static void clearCarVec(vector<Car*> carVec);
     
     static std::unordered_map<string, carType> types;
     static std::unordered_map<string, vector<string>> manufacturerData;
@@ -93,6 +93,27 @@ public:
         
         return os;
     }
+};
+
+
+class RaceCar {
+    
+    int speed;
+    Car* inputtedCar;
+    
+    int x_coor;
+    int y_coor;
+    char symbol;
+    
+ public:
+    //Constructor
+    RaceCar();
+    RaceCar(Car* inputCar, int row, char symbol_in);
+    int getRoundedXCoor();
+    int getRoundedYCoor();
+   const char getSymbol();
+    
+    
 };
 
 

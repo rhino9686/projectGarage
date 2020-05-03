@@ -88,26 +88,26 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
         
         //Enforcing that make must be a viable name, somehow have to filter out gibberish
         //TODO: make hashTable of known manufacturers to compare against?
-        if (makeIn == ""  || makeIn.length() > 10 ) {
+        if (makeIn == "" || makeIn.length() > 10 ) {
             return constructionError::Make_error;
         }
         
             
         //Enforcing that model must be a viable name for the manufacturer
         //TODO: make hashTable of known models for each manufacturers?
-        if (modelIn == ""  || modelIn.length() > 10 ) {
+        if (modelIn == "" || modelIn.length() > 10 ) {
             return constructionError::Model_error;
         }
         //Enforcing that year is within reasonable range, arbitrarily setting 1970-2021 for now
-        if (yearIn < 1970  || yearIn > 2021) {
+        if (yearIn < 1970 || yearIn > 2026) {
             return constructionError::Year_error;
         }
         //Enforcing that speed must be nonnegative and reasonable
-        if (speedIn < 0  || speedIn > 150) {
+        if (speedIn < 0 || speedIn > 150) {
             return constructionError::Speed_error;
         }
         //Enforcing that mpg is within a reasonable range
-        if (mpgIn < 0  || mpgIn > 50) {
+        if (mpgIn < 0 || mpgIn > 50) {
             return constructionError::MPG_error;
         }
     } catch (...) {
@@ -119,6 +119,39 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
     //if everything passes, return no error
     return constructionError::none;
 }
+
+
+RaceCar::RaceCar(){
+    speed = 0;
+    inputtedCar = nullptr;
+    symbol = 'R';
+    x_coor = 0;
+    y_coor = 0;
+    
+    
+}
+
+RaceCar::RaceCar(Car* inputCar, int row, char symbol_in) {
+    speed = inputCar->getSpeed();
+    inputtedCar = inputCar;
+    x_coor = 0;
+    y_coor = row;
+    symbol = symbol_in;
+}
+
+
+int RaceCar::getRoundedXCoor() {
+    return static_cast<int>(x_coor);
+}
+
+int RaceCar::getRoundedYCoor() {
+    return static_cast<int>(y_coor);
+}
+
+const char RaceCar::getSymbol() {
+    return symbol;
+}
+
 
 
 //Garage Priority Queue Comparators
@@ -308,12 +341,12 @@ void Racetrack::printTrack() {
     int fieldWidth = 5;
     std::cout << " ";
     
-    for(int lon = 0; lon < fieldWidth; lon++) {
+    for (int lon = 0; lon < fieldWidth; lon++) {
         std::cout << (lon % 10);
     }
     std::cout << "\n";
     for (int lat = 0; lat < fieldHeight; lat++) {
-        std::cout <<(lat % 10);
+        std::cout << ( lat % 10);
         
         for (int lon = 0; lon < fieldWidth; lon++) {
             
@@ -332,7 +365,6 @@ void Racetrack::printTrack() {
             std::cout << charToPrint;
             
         }//for
-        
         std:: cout << "\n";
     }//for
 };
