@@ -111,9 +111,9 @@ class RaceCar {
     RaceCar(Car* inputCar, int row, char symbol_in);
     int getRoundedXCoor();
     int getRoundedYCoor();
-   const char getSymbol();
-    
-    
+    Car* getCar();
+    const char getSymbol();
+
 };
 
 
@@ -188,7 +188,7 @@ public:
 
 class Racetrack {
     int numRacers = 0;
-    vector<Car*> racers;
+    vector<RaceCar*> racers;
     Car* winner = nullptr;
     
 public:
@@ -196,7 +196,7 @@ public:
     Racetrack(const int& numRacersIn);
     
     //Add Cars from an external source
-    void addRacers();
+    void addRacers(vector <Car*> &racers);
     
     //Simulate a race to see who is the winner
     void raceCars();

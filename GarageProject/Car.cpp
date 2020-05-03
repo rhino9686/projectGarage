@@ -148,6 +148,11 @@ int RaceCar::getRoundedYCoor() {
     return static_cast<int>(y_coor);
 }
 
+Car* RaceCar::getCar() {
+    return inputtedCar;
+}
+
+
 const char RaceCar::getSymbol() {
     return symbol;
 }
@@ -330,9 +335,35 @@ Racetrack::Racetrack(const int& numRacersIn) {
     
 }
 
-void Racetrack::addRacers() {
+void Racetrack::addRacers(vector <Car*> &racers) {
     return;
 }
+// todo: make sure cars can have a tie
+void Racetrack::raceCars() {
+    int endXCoor = 100;
+    RaceCar* winningRacer = nullptr;
+    
+    bool ended = false;
+    
+    while (!ended) {
+        
+        printTrack();
+        std::cout << '\n';
+        std::cout << '\n';
+        
+        for (RaceCar* racer:racers){
+            endXCoor--;
+        }
+        if (endXCoor < 0){
+            ended = true;
+        }
+    }
+    
+    winner = winningRacer->getCar();
+    
+    return;
+}
+
 
 
 void Racetrack::printTrack() {
@@ -352,8 +383,7 @@ void Racetrack::printTrack() {
             
             char charToPrint = '-';
             
-            /*
-             for (Car* player:racers){
+             for (RaceCar* player:racers){
              
              if (player->getRoundedXCoor() == lon && player->getRoundedYCoor() == lat){
              
@@ -361,7 +391,7 @@ void Racetrack::printTrack() {
              }
              
              }//for
-             */
+             
             std::cout << charToPrint;
             
         }//for
