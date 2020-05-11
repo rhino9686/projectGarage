@@ -140,6 +140,20 @@ RaceCar::RaceCar(Car* inputCar, int row, char symbol_in) {
 }
 
 
+
+void RaceCar::incrXCoor(double x_delta){
+    x_coor += x_delta;
+}
+
+void RaceCar::incrYCoor(double y_delta){
+    y_coor+= y_delta;
+}
+
+
+void RaceCar::move(){
+    incrXCoor(0.2 * speed);
+}
+
 int RaceCar::getRoundedXCoor() {
     return static_cast<int>(x_coor);
 }
@@ -270,7 +284,7 @@ Car* Garage::getMostEfficientCar() {
     return mostEfficent;
 }
 
-const vector<Car*> Garage::getNFastestCars(const int& N) {
+const vector<Car*> Garage::getNFastestCars(const int N) {
     // if garage is smaller than query, use entire garage and let user know
     int numToFetch = N;
     if (N > count){
@@ -348,10 +362,12 @@ Racetrack::~Racetrack() {
 
 void Racetrack::addRacers(vector <Car*> &racers_in) {
     
-    for (int i = 0; i < (int)racers_in.size(); i++){
+    numRacers = (int)racers_in.size();
+    for (int i = 0; i < numRacers; i++){
         
         Car* car_entry = racers_in[i];
-        RaceCar* racer = new RaceCar(car_entry, i, '%');
+        char symbol = symbols[i % numRacers];
+        RaceCar* racer = new RaceCar(car_entry, i, symbol);
         
         this->racers.push_back(racer);
     }
@@ -362,8 +378,8 @@ void Racetrack::addRacers(vector <Car*> &racers_in) {
 }
 // todo: make sure cars can have a tie
 void Racetrack::raceCars() {
-    int endXCoor = 10;
-    RaceCar* winningRacer = nullptr;
+    int endXCoor = 100;
+    RaceCar* winningRacer = racers[1];
     
     bool ended = false;
     
@@ -374,12 +390,18 @@ void Racetrack::raceCars() {
         std::cout << '\n';
         
         for (RaceCar* racer:racers){
+            racer->move();
             endXCoor--;
         }
+        
+        
+        
+        //Condition that ends the race
         if (endXCoor <= 0){
             ended = true;
         }
     }
+
     
     winner = winningRacer->getCar();
     
@@ -391,7 +413,7 @@ void Racetrack::raceCars() {
 void Racetrack::printTrack() {
     
     int fieldHeight = 4;
-    int fieldWidth = 5;
+    int fieldWidth = 10;
     std::cout << " ";
     
     for (int lon = 0; lon < fieldWidth; lon++) {

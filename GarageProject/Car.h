@@ -101,8 +101,8 @@ class RaceCar {
     int speed;
     Car* inputtedCar;
     
-    int x_coor;
-    int y_coor;
+    double x_coor;
+    double y_coor;
     char symbol;
     
  public:
@@ -111,6 +111,11 @@ class RaceCar {
     RaceCar(Car* inputCar, int row, char symbol_in);
     int getRoundedXCoor();
     int getRoundedYCoor();
+    
+    void incrXCoor(double x_delta);
+    void incrYCoor(double y_delta);
+    void move();
+    
     Car* getCar();
     const char getSymbol();
 
@@ -172,7 +177,7 @@ public:
     Car* getMostEfficientCar();
     
     //Gets the top N fastest cars where N < number of cars
-    const vector<Car*> getNFastestCars(const int& N);
+    const vector<Car*> getNFastestCars(const int N);
     
     //Lists all the cars in garage, by order that they were put in
     void listCars();
@@ -189,6 +194,7 @@ public:
 class Racetrack {
     int numRacers = 0;
     vector<RaceCar*> racers;
+    string symbols = "!@#$%^&*~=+";
     Car* winner = nullptr;
     
 public:
