@@ -55,5 +55,8 @@ int main() {
     
     
     
+    track.raceCars();
+    
+    
     return 0;
 }

@@ -271,15 +271,18 @@ Car* Garage::getMostEfficientCar() {
 }
 
 const vector<Car*> Garage::getNFastestCars(const int& N) {
-    //just quit if garage is smaller than query
+    // if garage is smaller than query, use entire garage and let user know
+    int numToFetch = N;
     if (N > count){
-        std::cout << "garage has insufficient cars for that task";
+        std::cout << "garage has insufficient cars for that task, using all cars";
+        numToFetch = count;
     }
+    
     
     vector<Car*> candidates;
     
     // get top N fastest cars
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < numToFetch; i++) {
         auto fastCar = fastestQueue.top();
         candidates.push_back(fastCar);
         fastestQueue.pop();
@@ -335,12 +338,31 @@ Racetrack::Racetrack(const int& numRacersIn) {
     
 }
 
-void Racetrack::addRacers(vector <Car*> &racers) {
+Racetrack::~Racetrack() {
+   for (RaceCar* racer: racers){
+        delete racer;
+    }
+}
+
+
+
+void Racetrack::addRacers(vector <Car*> &racers_in) {
+    
+    for (int i = 0; i < (int)racers_in.size(); i++){
+        
+        Car* car_entry = racers_in[i];
+        RaceCar* racer = new RaceCar(car_entry, i, '%');
+        
+        this->racers.push_back(racer);
+    }
+
+    
+
     return;
 }
 // todo: make sure cars can have a tie
 void Racetrack::raceCars() {
-    int endXCoor = 100;
+    int endXCoor = 10;
     RaceCar* winningRacer = nullptr;
     
     bool ended = false;
@@ -354,7 +376,7 @@ void Racetrack::raceCars() {
         for (RaceCar* racer:racers){
             endXCoor--;
         }
-        if (endXCoor < 0){
+        if (endXCoor <= 0){
             ended = true;
         }
     }

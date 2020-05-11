@@ -195,8 +195,11 @@ public:
     //Constructor
     Racetrack(const int& numRacersIn);
     
+    //Destructor
+    ~Racetrack();
+    
     //Add Cars from an external source
-    void addRacers(vector <Car*> &racers);
+    void addRacers(vector <Car*> &racers_in);
     
     //Simulate a race to see who is the winner
     void raceCars();
