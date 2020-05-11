@@ -378,7 +378,7 @@ void Racetrack::addRacers(vector <Car*> &racers_in) {
 }
 // todo: make sure cars can have a tie
 void Racetrack::raceCars() {
-    int endXCoor = 100;
+    int timeOut = 10000;
     RaceCar* winningRacer = racers[1];
     
     bool ended = false;
@@ -391,13 +391,18 @@ void Racetrack::raceCars() {
         
         for (RaceCar* racer:racers){
             racer->move();
-            endXCoor--;
+            timeOut--;
+            
+            if (racer->getRoundedXCoor() > 100){
+                ended = true;
+                winningRacer = racer;
+            }
+            
         }
         
         
-        
         //Condition that ends the race
-        if (endXCoor <= 0){
+        if (timeOut <= 0){
             ended = true;
         }
     }
@@ -413,7 +418,7 @@ void Racetrack::raceCars() {
 void Racetrack::printTrack() {
     
     int fieldHeight = 4;
-    int fieldWidth = 10;
+    int fieldWidth = 100;
     std::cout << " ";
     
     for (int lon = 0; lon < fieldWidth; lon++) {
