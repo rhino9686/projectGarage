@@ -211,7 +211,7 @@ public:
     //Simulate a race to see who is the winner
     void raceCars();
     
-    //Return the Winner of the race , nullptr if there hasn't been a race yet
+    //Return the Winner of the race, nullptr if there hasn't been a race yet
     Car* getWinner();
     
     //Utility function to print the racetrack with each iteration of the

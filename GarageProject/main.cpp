@@ -245,7 +245,6 @@ void addCar(Garage &gar, const bool &v) {
             }
             
             string tryAgain;
-            
             cout << "ERROR: You inputted an invalid " << Errortypes[index] << " for this car. Try again? \n"
             " Y or N  \n";
            
@@ -255,7 +254,6 @@ void addCar(Garage &gar, const bool &v) {
             if (tryAgain == "n" || tryAgain == "no" ) {
                 return;
             }
-
         }
     } while(true);
     
@@ -288,6 +286,8 @@ void addCarsByFile(Garage &gar, const bool &v) {
         // Get each car line from input file and put it in a data vector
         vector<string> carData;
         carData = splitString(line);
+        
+        //TODO: Resolve this
         
         /*for (auto car:carData)
             cout << car << " ";
@@ -348,7 +348,7 @@ void clearCars(Garage &gar, const bool &v) {
     return;
 }
 
-//TODO: implement
+//TODO: Figure out controls
 void raceCars(Garage &gar, const bool &v) {
     cout << "racing cars!\n";
     Racetrack r = Racetrack(2);
@@ -399,7 +399,7 @@ void getData(Garage &gar, const bool &v) {
     
 }
 
-
+// TODO: Implement
 void queryData(Garage &gar, const bool &v){
     
     

@@ -92,9 +92,7 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
             return constructionError::Make_error;
         }
         
-            
         //Enforcing that model must be a viable name for the manufacturer
-        //TODO: make hashTable of known models for each manufacturers?
         if (modelIn == "" || modelIn.length() > 10 ) {
             return constructionError::Model_error;
         }
@@ -389,6 +387,7 @@ void Racetrack::addRacers(vector <Car*> &racers_in) {
 }
 // todo: make sure cars can have a tie
 void Racetrack::raceCars() {
+    // timeout to avoid infinite loop
     int timeOut = 10000;
     RaceCar* winningRacer = racers[1];
     
@@ -411,7 +410,6 @@ void Racetrack::raceCars() {
             }
         }
         
-        
         //Condition that ends the race unconditionally after timeout ends
         if (timeOut <= 0){
             ended = true;
@@ -421,20 +419,18 @@ void Racetrack::raceCars() {
      
     winner = winningRacer->getCar();
     
-//    if verbose, print out the winning car
+    //  If verbose, print out the winning car
     if (1){
         std::cout << "The winning car is the " << *winner << '\n';
     }
-    
     
     return;
 }
 
 
-
 void Racetrack::printTrack() {
     
-    int fieldHeight = numRacers + 3;
+    int fieldHeight = numRacers + 2;
     int fieldWidth = raceLength;
     std::cout << " ";
     
@@ -449,14 +445,11 @@ void Racetrack::printTrack() {
             
             //For every spot on the grid, print out a character for the racer or just a dash instead
              char charToPrint = '-';
-
              for (RaceCar* player:racers){
                  
                  if (player->getRoundedXCoor() == lon && player->getRoundedYCoor() == lat){
-                 
                      charToPrint = player->getSymbol();
                  }
-             
              }//for
              
             std::cout << charToPrint;
@@ -465,3 +458,7 @@ void Racetrack::printTrack() {
         std:: cout << "\n";
     }//for
 };
+
+Car* Racetrack::getWinner() {
+    return winner;
+}
