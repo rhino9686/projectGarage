@@ -65,9 +65,9 @@ int Car::idCounter = 1000;
 
 //Initialized a static map for mapping strings to car types since types don't convert implicitly
 std::unordered_map<string, carType> Car::types = {
-    {"sedan",carType::SEDAN}, {"truck",carType::TRUCK},
-    {"crossover",carType::CROSSOVER}, {"suv",carType::SUV},
-    {"other",carType::OTHER }
+    {"sedan", carType::SEDAN}, {"truck", carType::TRUCK},
+    {"crossover", carType::CROSSOVER}, {"suv", carType::SUV},
+    {"other", carType::OTHER }
 };
 
 
@@ -87,7 +87,7 @@ constructionError Car::checkError(const string &makeIn, const string &modelIn, c
     try {
         
         //Enforcing that make must be a viable name, somehow have to filter out gibberish
-        //TODO: make hashTable of known manufacturers to compare against?
+        //TODO: integrate manufacturer data as an error checking method
         if (makeIn == "" || makeIn.length() > 10 ) {
             return constructionError::Make_error;
         }
@@ -215,7 +215,8 @@ Garage::~Garage() {
     clear();
 }
 
-
+//Adds a singular car to the garage
+//Does not check for validity, use the car error functions to do so
 void Garage::addCar(Car* newCar) {
     cars.push_back(newCar);
     fastestQueue.push(newCar);
@@ -223,6 +224,7 @@ void Garage::addCar(Car* newCar) {
     count++;
 }
 
+//Adds cars from a vector of cars for ease of use
 void Garage::addCars(vector <Car*> &newCars) {
     for (auto &entryfromVector: newCars) {
         addCar(entryfromVector);
@@ -260,19 +262,19 @@ void Garage::clear() {
     count = 0;
 }
 
-//Get the number of cars in the garage
+//Gets the number of cars in the garage
 const int& Garage::getCount() {
     return count;
 }
 
 
-//Get the latest car added to garage
+//Gets the latest car added to garage
 Car* Garage::getLatestCar() {
     Car* latest = cars.at(count - 1);
     return latest;
 }
 
-//Get the fastest car in the garage
+//Gets the fastest car in the garage
 Car* Garage::getFastestCar() {
     Car* fastest = fastestQueue.top();
     return fastest;
@@ -284,6 +286,7 @@ Car* Garage::getMostEfficientCar() {
     return mostEfficent;
 }
 
+//Gets a list of the top <N> fastest cars in garage where N is an inputted number by user
 const vector<Car*> Garage::getNFastestCars(const int N) {
     // if garage is smaller than query, use entire garage and let user know
     int numToFetch = N;
@@ -307,7 +310,7 @@ const vector<Car*> Garage::getNFastestCars(const int N) {
     }
     return candidates;
 }
-
+//Prints out all cars in the garage
 void Garage::listCars() {
     if (count == 0) {
         std::cout << "No cars currently in garage\n";
@@ -317,7 +320,7 @@ void Garage::listCars() {
     }
     
 }
-
+//Gets the average speed of all cars in garage
 const double Garage::getAvgSpeed() {
     double avgSpeed = 0;
     
@@ -329,7 +332,7 @@ const double Garage::getAvgSpeed() {
     return avgSpeed;
 }
 
-//Get the average MPG of all cars in garage
+//Gets the average MPG of all cars in garage
 const double Garage::getAvgMpg() {
     double avgMPG = 0;
     
@@ -347,11 +350,15 @@ const double Garage::getAvgMpg() {
 //RaceTrack functions
 /////////////////////
 
-Racetrack::Racetrack(const int& numRacersIn) {
+//Constructor that takes in a number of racers
+Racetrack::Racetrack(const int& numRacersIn, const int& raceLengthIn) {
     numRacers = numRacersIn;
+    raceLength = raceLengthIn;
     
 }
 
+//Destructor that handles dynamic memory
+//TODO: remove when smart pointers
 Racetrack::~Racetrack() {
    for (RaceCar* racer: racers){
         delete racer;
@@ -359,20 +366,24 @@ Racetrack::~Racetrack() {
 }
 
 
-
+//Adds a vector of cars to be used as Racers in the track
+//TODO: switch pointers to be smart pointers
 void Racetrack::addRacers(vector <Car*> &racers_in) {
     
-    numRacers = (int)racers_in.size();
-    for (int i = 0; i < numRacers; i++){
+    int numRacersTemp = (int)racers_in.size();
+    
+    //for each new entry, assign it a racing profile and add it to the racers
+    for (int i = 0; i < numRacersTemp; i++){
         
         Car* car_entry = racers_in[i];
-        char symbol = symbols[i % numRacers];
+        char symbol = symbols[i % (int)symbols.length()];
         RaceCar* racer = new RaceCar(car_entry, i, symbol);
         
         this->racers.push_back(racer);
     }
 
-    
+    //update number of racers
+    numRacers = (int)racers.size();
 
     return;
 }
@@ -385,6 +396,7 @@ void Racetrack::raceCars() {
     
     while (!ended) {
         
+        //Print out the progress of the race with every iteration
         printTrack();
         std::cout << '\n';
         std::cout << '\n';
@@ -393,22 +405,27 @@ void Racetrack::raceCars() {
             racer->move();
             timeOut--;
             
-            if (racer->getRoundedXCoor() > 100){
+            if (racer->getRoundedXCoor() > raceLength){
                 ended = true;
                 winningRacer = racer;
             }
-            
         }
         
         
-        //Condition that ends the race
+        //Condition that ends the race unconditionally after timeout ends
         if (timeOut <= 0){
             ended = true;
+            std::cout << "TIMEOUT ERROR" << std::endl;
         }
     }
-
-    
+     
     winner = winningRacer->getCar();
+    
+//    if verbose, print out the winning car
+    if (1){
+        std::cout << "The winning car is the " << *winner << '\n';
+    }
+    
     
     return;
 }
@@ -417,8 +434,8 @@ void Racetrack::raceCars() {
 
 void Racetrack::printTrack() {
     
-    int fieldHeight = 4;
-    int fieldWidth = 100;
+    int fieldHeight = numRacers + 3;
+    int fieldWidth = raceLength;
     std::cout << " ";
     
     for (int lon = 0; lon < fieldWidth; lon++) {
@@ -430,14 +447,15 @@ void Racetrack::printTrack() {
         
         for (int lon = 0; lon < fieldWidth; lon++) {
             
-            char charToPrint = '-';
-            
+            //For every spot on the grid, print out a character for the racer or just a dash instead
+             char charToPrint = '-';
+
              for (RaceCar* player:racers){
-             
-             if (player->getRoundedXCoor() == lon && player->getRoundedYCoor() == lat){
-             
-             charToPrint = player->getSymbol();
-             }
+                 
+                 if (player->getRoundedXCoor() == lon && player->getRoundedYCoor() == lat){
+                 
+                     charToPrint = player->getSymbol();
+                 }
              
              }//for
              

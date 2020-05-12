@@ -193,13 +193,14 @@ public:
 
 class Racetrack {
     int numRacers = 0;
+    int raceLength = 0;
     vector<RaceCar*> racers;
     string symbols = "!@#$%^&*~=+";
     Car* winner = nullptr;
     
 public:
     //Constructor
-    Racetrack(const int& numRacersIn);
+    Racetrack(const int& numRacersIn, const int& raceLengthIn);
     
     //Destructor
     ~Racetrack();

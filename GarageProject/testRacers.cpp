@@ -50,7 +50,7 @@ int main() {
     Gar.addCar(med);
     
     
-    auto track = Racetrack(3);
+    auto track = Racetrack(3, 70);
     
     auto fastest = Gar.getNFastestCars(3);
     
