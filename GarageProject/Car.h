@@ -209,7 +209,7 @@ public:
     void addRacers(vector <Car*> &racers_in);
     
     //Simulate a race to see who is the winner
-    void raceCars();
+    void raceCars(bool v);
     
     //Return the Winner of the race, nullptr if there hasn't been a race yet
     Car* getWinner();

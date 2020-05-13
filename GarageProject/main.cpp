@@ -348,12 +348,27 @@ void clearCars(Garage &gar, const bool &v) {
     return;
 }
 
-//TODO: Figure out controls
+//TODO: sanitize input data if needed
 void raceCars(Garage &gar, const bool &v) {
-    cout << "racing cars!\n";
-    Racetrack r = Racetrack(2);
     
-    r.printTrack();
+    int numToRace = 0;
+    int raceLength = 0;
+    
+    cout << "how many cars do you want to race? enter a number between 2 and 15 \n";
+    cin >> numToRace;
+    cout << "how long of a track? enter a number between 10 and 100\n";
+    cin >> raceLength;
+    
+    cout << "racing cars!\n";
+    
+    Racetrack r = Racetrack(numToRace, raceLength);
+    
+    auto racers = gar.getNFastestCars(numToRace);
+    
+    r.addRacers(racers);
+    
+    r.raceCars(v);
+    
     
     return;
 }
@@ -389,11 +404,11 @@ void getData(Garage &gar, const bool &v) {
     double avgMPG = gar.getAvgMpg();
     
     cout << "Most recent car: \n" << *latest << '\n';
-    cout << "Fastest car: \n" << *fastest << '\n';
+    cout << "Fastest car: \n" << *fastest << "with speed of " << fastest->getSpeed() << " MPH\n";
     cout << "Most efficient car: \n" << *efficient << '\n';
     
-    cout << "Average speed of cars: " << avgSpeed << '\n';
-    cout << "Average mpg of cars: " << avgMPG << '\n';
+    cout << "Average speed of cars: " << avgSpeed << " MPH\n";
+    cout << "Average MPG of cars: " << avgMPG << " MPG\n";
     
     return;
     

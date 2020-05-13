@@ -149,7 +149,7 @@ void RaceCar::incrYCoor(double y_delta){
 
 
 void RaceCar::move(){
-    incrXCoor(0.2 * speed);
+    incrXCoor(0.08 * speed);
 }
 
 int RaceCar::getRoundedXCoor() {
@@ -386,7 +386,15 @@ void Racetrack::addRacers(vector <Car*> &racers_in) {
     return;
 }
 // todo: make sure cars can have a tie
-void Racetrack::raceCars() {
+void Racetrack::raceCars(bool v) {
+    
+    
+    if( numRacers == 0){
+       std::cout << "No racers added, add some cars to your garage\n";
+        return;
+    }
+    
+    
     // timeout to avoid infinite loop
     int timeOut = 10000;
     RaceCar* winningRacer = racers[1];
@@ -420,7 +428,7 @@ void Racetrack::raceCars() {
     winner = winningRacer->getCar();
     
     //  If verbose, print out the winning car
-    if (1){
+    if (v){
         std::cout << "The winning car is the " << *winner << '\n';
     }
     

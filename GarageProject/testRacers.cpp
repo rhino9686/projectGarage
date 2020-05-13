@@ -55,7 +55,7 @@ int main() {
     auto fastest = Gar.getNFastestCars(3);
     
     track.addRacers(fastest);
-    track.raceCars();
+    track.raceCars(true);
     
     Car* winner = track.getWinner();
     
