@@ -1,27 +1,41 @@
 
+UNAME := $(shell uname)
+
+
+
+
 CXX      = g++
 
-CXXFLAGS = -std=c++17 -Wall -g3
+
+ifeq ($(UNAME), Darwin)
+
+	CXX  = clang++
+endif
+
+
+
+CXXFLAGS = -std=c++17 -stdlib=libc++ -Wall -g3
 
 
 garage: main.o Car.o
-	$(CXX) main.o Car.o -o garage
+	$(CXX) $(CXXFLAGS)  main.o Car.o -o garage
 
 main.o: main.cpp ToolBox.h
-	$(CXX) -c main.cpp -o main.o
+	$(CXX)  $(CXXFLAGS) -c main.cpp -o main.o
 
 Car.o: Car.cpp Car.h
-	$(CXX) -c Car.cpp -o Car.o
+	$(CXX) $(CXXFLAGS)  -c Car.cpp -o Car.o
 
 tests: testCars.o testGarage.o
-	$(CXX) -o carTests testCars.o
-	$(CXX) -o garageTests testGarage.o
+	$(CXX)  $(CXXFLAGS)   -o carTests testCars.o
+	$(CXX) $(CXXFLAGS)   -o garageTests testGarage.o
 
 testCars.o: testCars.cpp Car.h
-	$(CXX) -c testCars.o testCars.cpp
+	$(CXX)  $(CXXFLAGS)  -c testCars.o testCars.cpp
 
 testGarage.o: testGarage.cpp Car.h 
-	$(CXX) -c testGarage.o testGarage.cpp 
+	$(CXX)  $(CXXFLAGS)  -c testGarage.o testGarage.cpp 
 
 clean:
 	rm -f garage carTests garageTests *.o
+	
